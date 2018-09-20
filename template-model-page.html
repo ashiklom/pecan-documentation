@@ -189,16 +189,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-meta-analysis"><i class="fa fa-check"></i><b>7.1.6</b> <code>meta.analysis</code>: Trait Meta Analysis</a></li>
 <li class="chapter" data-level="7.1.7" data-path="pecanXML.html"><a href="pecanXML.html#xml-model"><i class="fa fa-check"></i><b>7.1.7</b> <code>model</code>: Model configuration</a></li>
 <li class="chapter" data-level="7.1.8" data-path="pecanXML.html"><a href="pecanXML.html#xml-run"><i class="fa fa-check"></i><b>7.1.8</b> <code>run</code>: Run Setup</a></li>
+<li class="chapter" data-level="7.1.9" data-path="pecanXML.html"><a href="pecanXML.html#xml-host"><i class="fa fa-check"></i><b>7.1.9</b> <code>host</code>: Host information for remote execution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-stable-advanced"><i class="fa fa-check"></i><b>7.2</b> Stable advanced features</a><ul>
+<li class="chapter" data-level="7.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-advanced"><i class="fa fa-check"></i><b>7.2</b> Advanced features</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-ensemble"><i class="fa fa-check"></i><b>7.2.1</b> <code>ensemble</code>: Ensemble Runs</a></li>
 <li class="chapter" data-level="7.2.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-sensitivity-analysis"><i class="fa fa-check"></i><b>7.2.2</b> <code>sensitivity.analysis</code>: Sensitivity analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="pecanXML.html"><a href="pecanXML.html#experimental-features"><i class="fa fa-check"></i><b>7.3</b> Experimental features</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-browndog"><i class="fa fa-check"></i><b>7.3.1</b> Brown Dog</a></li>
-<li class="chapter" data-level="7.3.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-state-data-assimilation"><i class="fa fa-check"></i><b>7.3.2</b> State Data Assimilation</a></li>
-<li class="chapter" data-level="7.3.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-parameter-data-assimilation"><i class="fa fa-check"></i><b>7.3.3</b> Parameter Data Assimilation</a></li>
-<li class="chapter" data-level="7.3.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-benchmarking"><i class="fa fa-check"></i><b>7.3.4</b> Benchmarking</a></li>
+<li class="chapter" data-level="7.2.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-parameter-data-assimilation"><i class="fa fa-check"></i><b>7.2.3</b> Parameter Data Assimilation</a></li>
+<li class="chapter" data-level="7.2.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-state-data-assimilation"><i class="fa fa-check"></i><b>7.2.4</b> (experimental) State Data Assimilation</a></li>
+<li class="chapter" data-level="7.2.5" data-path="pecanXML.html"><a href="pecanXML.html#xml-browndog"><i class="fa fa-check"></i><b>7.2.5</b> (experimental) Brown Dog</a></li>
+<li class="chapter" data-level="7.2.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-benchmarking"><i class="fa fa-check"></i><b>7.2.6</b> (experimental) Benchmarking</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="additional-web-configuration.html"><a href="additional-web-configuration.html"><i class="fa fa-check"></i><b>8</b> Additional web configuration</a><ul>
@@ -1024,23 +1023,23 @@ List of inputs required by model, such as met, etc.</p>
 </div>
 <div id="tacc-lonestar" class="section level4">
 <h4><span class="header-section-number">31.6.5.3</span> TACC lonestar</h4>
-<div class="sourceCode" id="cb237"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="ex">module</span> load hdf5</a>
-<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="ex">curl</span> -o ED.r82.tgz http://isda.ncsa.illinois.edu/~kooper/EBI/ED.r82.tgz</a>
-<a class="sourceLine" id="cb237-3" data-line-number="3"><span class="fu">tar</span> zxf ED.r82.tgz</a>
-<a class="sourceLine" id="cb237-4" data-line-number="4"><span class="fu">rm</span> ED.r82.tgz</a>
-<a class="sourceLine" id="cb237-5" data-line-number="5"><span class="bu">cd</span> ED.r82/ED/build/bin</a>
-<a class="sourceLine" id="cb237-6" data-line-number="6"><span class="ex">curl</span> -o include.mk.lonestar http://isda.ncsa.illinois.edu/~kooper/EBI/include.mk.lonestar</a>
-<a class="sourceLine" id="cb237-7" data-line-number="7"><span class="fu">make</span> OPT=lonestar</a></code></pre></div>
-</div>
-<div id="tacc-stampede" class="section level4">
-<h4><span class="header-section-number">31.6.5.4</span> TACC stampede</h4>
 <div class="sourceCode" id="cb238"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="ex">module</span> load hdf5</a>
 <a class="sourceLine" id="cb238-2" data-line-number="2"><span class="ex">curl</span> -o ED.r82.tgz http://isda.ncsa.illinois.edu/~kooper/EBI/ED.r82.tgz</a>
 <a class="sourceLine" id="cb238-3" data-line-number="3"><span class="fu">tar</span> zxf ED.r82.tgz</a>
 <a class="sourceLine" id="cb238-4" data-line-number="4"><span class="fu">rm</span> ED.r82.tgz</a>
 <a class="sourceLine" id="cb238-5" data-line-number="5"><span class="bu">cd</span> ED.r82/ED/build/bin</a>
-<a class="sourceLine" id="cb238-6" data-line-number="6"><span class="ex">curl</span> -o include.mk.stampede http://isda.ncsa.illinois.edu/~kooper/EBI/include.mk.stampede</a>
-<a class="sourceLine" id="cb238-7" data-line-number="7"><span class="fu">make</span> OPT=stampede</a></code></pre></div>
+<a class="sourceLine" id="cb238-6" data-line-number="6"><span class="ex">curl</span> -o include.mk.lonestar http://isda.ncsa.illinois.edu/~kooper/EBI/include.mk.lonestar</a>
+<a class="sourceLine" id="cb238-7" data-line-number="7"><span class="fu">make</span> OPT=lonestar</a></code></pre></div>
+</div>
+<div id="tacc-stampede" class="section level4">
+<h4><span class="header-section-number">31.6.5.4</span> TACC stampede</h4>
+<div class="sourceCode" id="cb239"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="ex">module</span> load hdf5</a>
+<a class="sourceLine" id="cb239-2" data-line-number="2"><span class="ex">curl</span> -o ED.r82.tgz http://isda.ncsa.illinois.edu/~kooper/EBI/ED.r82.tgz</a>
+<a class="sourceLine" id="cb239-3" data-line-number="3"><span class="fu">tar</span> zxf ED.r82.tgz</a>
+<a class="sourceLine" id="cb239-4" data-line-number="4"><span class="fu">rm</span> ED.r82.tgz</a>
+<a class="sourceLine" id="cb239-5" data-line-number="5"><span class="bu">cd</span> ED.r82/ED/build/bin</a>
+<a class="sourceLine" id="cb239-6" data-line-number="6"><span class="ex">curl</span> -o include.mk.stampede http://isda.ncsa.illinois.edu/~kooper/EBI/include.mk.stampede</a>
+<a class="sourceLine" id="cb239-7" data-line-number="7"><span class="fu">make</span> OPT=stampede</a></code></pre></div>
 
 </div>
 </div>

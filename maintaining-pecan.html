@@ -189,16 +189,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-meta-analysis"><i class="fa fa-check"></i><b>7.1.6</b> <code>meta.analysis</code>: Trait Meta Analysis</a></li>
 <li class="chapter" data-level="7.1.7" data-path="pecanXML.html"><a href="pecanXML.html#xml-model"><i class="fa fa-check"></i><b>7.1.7</b> <code>model</code>: Model configuration</a></li>
 <li class="chapter" data-level="7.1.8" data-path="pecanXML.html"><a href="pecanXML.html#xml-run"><i class="fa fa-check"></i><b>7.1.8</b> <code>run</code>: Run Setup</a></li>
+<li class="chapter" data-level="7.1.9" data-path="pecanXML.html"><a href="pecanXML.html#xml-host"><i class="fa fa-check"></i><b>7.1.9</b> <code>host</code>: Host information for remote execution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-stable-advanced"><i class="fa fa-check"></i><b>7.2</b> Stable advanced features</a><ul>
+<li class="chapter" data-level="7.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-advanced"><i class="fa fa-check"></i><b>7.2</b> Advanced features</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-ensemble"><i class="fa fa-check"></i><b>7.2.1</b> <code>ensemble</code>: Ensemble Runs</a></li>
 <li class="chapter" data-level="7.2.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-sensitivity-analysis"><i class="fa fa-check"></i><b>7.2.2</b> <code>sensitivity.analysis</code>: Sensitivity analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="pecanXML.html"><a href="pecanXML.html#experimental-features"><i class="fa fa-check"></i><b>7.3</b> Experimental features</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-browndog"><i class="fa fa-check"></i><b>7.3.1</b> Brown Dog</a></li>
-<li class="chapter" data-level="7.3.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-state-data-assimilation"><i class="fa fa-check"></i><b>7.3.2</b> State Data Assimilation</a></li>
-<li class="chapter" data-level="7.3.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-parameter-data-assimilation"><i class="fa fa-check"></i><b>7.3.3</b> Parameter Data Assimilation</a></li>
-<li class="chapter" data-level="7.3.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-benchmarking"><i class="fa fa-check"></i><b>7.3.4</b> Benchmarking</a></li>
+<li class="chapter" data-level="7.2.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-parameter-data-assimilation"><i class="fa fa-check"></i><b>7.2.3</b> Parameter Data Assimilation</a></li>
+<li class="chapter" data-level="7.2.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-state-data-assimilation"><i class="fa fa-check"></i><b>7.2.4</b> (experimental) State Data Assimilation</a></li>
+<li class="chapter" data-level="7.2.5" data-path="pecanXML.html"><a href="pecanXML.html#xml-browndog"><i class="fa fa-check"></i><b>7.2.5</b> (experimental) Brown Dog</a></li>
+<li class="chapter" data-level="7.2.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-benchmarking"><i class="fa fa-check"></i><b>7.2.6</b> (experimental) Benchmarking</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="additional-web-configuration.html"><a href="additional-web-configuration.html"><i class="fa fa-check"></i><b>8</b> Additional web configuration</a><ul>
@@ -652,8 +651,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="updating-pecan" class="section level3">
 <h3><span class="header-section-number">25.1.1</span> Updating PEcAn</h3>
 <p>The latest version of PEcAn code can be obtained from the PEcAn repository on GitHub:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="bu">cd</span> pecan        # If you are not already in the PEcAn directory</a>
-<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="fu">git</span> pull</a></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="bu">cd</span> pecan        # If you are not already in the PEcAn directory</a>
+<a class="sourceLine" id="cb191-2" data-line-number="2"><span class="fu">git</span> pull</a></code></pre></div>
 <p>The PEcAn build system is based on GNU Make.
 The simplest way to install is to run <code>make</code> from inside the PEcAn directory.
 This will update the documentation for all packages and install them, as well as all required dependencies.</p>

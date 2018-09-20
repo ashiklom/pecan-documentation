@@ -189,16 +189,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-meta-analysis"><i class="fa fa-check"></i><b>7.1.6</b> <code>meta.analysis</code>: Trait Meta Analysis</a></li>
 <li class="chapter" data-level="7.1.7" data-path="pecanXML.html"><a href="pecanXML.html#xml-model"><i class="fa fa-check"></i><b>7.1.7</b> <code>model</code>: Model configuration</a></li>
 <li class="chapter" data-level="7.1.8" data-path="pecanXML.html"><a href="pecanXML.html#xml-run"><i class="fa fa-check"></i><b>7.1.8</b> <code>run</code>: Run Setup</a></li>
+<li class="chapter" data-level="7.1.9" data-path="pecanXML.html"><a href="pecanXML.html#xml-host"><i class="fa fa-check"></i><b>7.1.9</b> <code>host</code>: Host information for remote execution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-stable-advanced"><i class="fa fa-check"></i><b>7.2</b> Stable advanced features</a><ul>
+<li class="chapter" data-level="7.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-advanced"><i class="fa fa-check"></i><b>7.2</b> Advanced features</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-ensemble"><i class="fa fa-check"></i><b>7.2.1</b> <code>ensemble</code>: Ensemble Runs</a></li>
 <li class="chapter" data-level="7.2.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-sensitivity-analysis"><i class="fa fa-check"></i><b>7.2.2</b> <code>sensitivity.analysis</code>: Sensitivity analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="pecanXML.html"><a href="pecanXML.html#experimental-features"><i class="fa fa-check"></i><b>7.3</b> Experimental features</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-browndog"><i class="fa fa-check"></i><b>7.3.1</b> Brown Dog</a></li>
-<li class="chapter" data-level="7.3.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-state-data-assimilation"><i class="fa fa-check"></i><b>7.3.2</b> State Data Assimilation</a></li>
-<li class="chapter" data-level="7.3.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-parameter-data-assimilation"><i class="fa fa-check"></i><b>7.3.3</b> Parameter Data Assimilation</a></li>
-<li class="chapter" data-level="7.3.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-benchmarking"><i class="fa fa-check"></i><b>7.3.4</b> Benchmarking</a></li>
+<li class="chapter" data-level="7.2.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-parameter-data-assimilation"><i class="fa fa-check"></i><b>7.2.3</b> Parameter Data Assimilation</a></li>
+<li class="chapter" data-level="7.2.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-state-data-assimilation"><i class="fa fa-check"></i><b>7.2.4</b> (experimental) State Data Assimilation</a></li>
+<li class="chapter" data-level="7.2.5" data-path="pecanXML.html"><a href="pecanXML.html#xml-browndog"><i class="fa fa-check"></i><b>7.2.5</b> (experimental) Brown Dog</a></li>
+<li class="chapter" data-level="7.2.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-benchmarking"><i class="fa fa-check"></i><b>7.2.6</b> (experimental) Benchmarking</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="additional-web-configuration.html"><a href="additional-web-configuration.html"><i class="fa fa-check"></i><b>8</b> Additional web configuration</a><ul>
@@ -646,16 +645,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">35.2</span> Running PEcAn</h2>
 <p>We will use a yaml file to describe the containers that we make up, This yaml file is called <a href="https://github.com/PecanProject/pecan/blob/master/docker-compose.yml">docker-compose.yml</a>. Before you get started you will need to download this file first. Place this file somewhere on your machine and cd to the folder that contains this file.</p>
 <p>Next we will start the docker containers to start Docker. Since both BETY and PEcAn depend on a populated database we will first start the database and populate it with some data. This only needs to be done once, if this is done already, you can skip this step and go to the next step</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="ex">docker-compose</span> -p pecan up -d postgres</a>
-<a class="sourceLine" id="cb250-2" data-line-number="2"><span class="ex">docker</span> run -ti --rm \</a>
-<a class="sourceLine" id="cb250-3" data-line-number="3">    --network pecan_pecan \</a>
-<a class="sourceLine" id="cb250-4" data-line-number="4">    hub.ncsa.illinois.edu/pecan/bety:latest initialize</a>
-<a class="sourceLine" id="cb250-5" data-line-number="5"><span class="ex">docker</span> run -ti --rm \</a>
-<a class="sourceLine" id="cb250-6" data-line-number="6">    --network pecan_pecan \</a>
-<a class="sourceLine" id="cb250-7" data-line-number="7">    --volume pecan_pecan:/data \</a>
-<a class="sourceLine" id="cb250-8" data-line-number="8">    hub.ncsa.illinois.edu/pecan/data:develop</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="ex">docker-compose</span> -p pecan up -d postgres</a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="ex">docker</span> run -ti --rm \</a>
+<a class="sourceLine" id="cb251-3" data-line-number="3">    --network pecan_pecan \</a>
+<a class="sourceLine" id="cb251-4" data-line-number="4">    hub.ncsa.illinois.edu/pecan/bety:latest initialize</a>
+<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="ex">docker</span> run -ti --rm \</a>
+<a class="sourceLine" id="cb251-6" data-line-number="6">    --network pecan_pecan \</a>
+<a class="sourceLine" id="cb251-7" data-line-number="7">    --volume pecan_pecan:/data \</a>
+<a class="sourceLine" id="cb251-8" data-line-number="8">    hub.ncsa.illinois.edu/pecan/data:develop</a></code></pre></div>
 <p>If this is finished (or you had done this in the past), we can start the full stack:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="ex">docker-compose</span> -p pecan up -d</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="ex">docker-compose</span> -p pecan up -d</a></code></pre></div>
 <p>This will start all the containers marked green in the architecture diagram. Once this is done you have a working instance of PEcAn. Following is a list of URL’s you can visit</p>
 <table>
 <colgroup>
@@ -695,19 +694,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="testing-pecan" class="section level2">
 <h2><span class="header-section-number">35.3</span> Testing PEcAn</h2>
 <p>To test PEcAn you can use the following curl statement, or use the webpage to submit a request:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="ex">curl</span> -v -X POST \</a>
-<a class="sourceLine" id="cb252-2" data-line-number="2">    -F <span class="st">&#39;hostname=docker&#39;</span> \</a>
-<a class="sourceLine" id="cb252-3" data-line-number="3">    -F <span class="st">&#39;modelid=5000000002&#39;</span> \</a>
-<a class="sourceLine" id="cb252-4" data-line-number="4">    -F <span class="st">&#39;sitegroupid=1&#39;</span> \</a>
-<a class="sourceLine" id="cb252-5" data-line-number="5">    -F <span class="st">&#39;siteid=772&#39;</span> \</a>
-<a class="sourceLine" id="cb252-6" data-line-number="6">    -F <span class="st">&#39;sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)&#39;</span> \</a>
-<a class="sourceLine" id="cb252-7" data-line-number="7">    -F <span class="st">&#39;pft[]=temperate.coniferous&#39;</span> \</a>
-<a class="sourceLine" id="cb252-8" data-line-number="8">    -F <span class="st">&#39;start=2004/01/01&#39;</span> \</a>
-<a class="sourceLine" id="cb252-9" data-line-number="9">    -F <span class="st">&#39;end=2004/12/31&#39;</span> \</a>
-<a class="sourceLine" id="cb252-10" data-line-number="10">    -F <span class="st">&#39;input_met=5000000005&#39;</span> \</a>
-<a class="sourceLine" id="cb252-11" data-line-number="11">    -F <span class="st">&#39;email=&#39;</span> \</a>
-<a class="sourceLine" id="cb252-12" data-line-number="12">    -F <span class="st">&#39;notes=&#39;</span> \</a>
-<a class="sourceLine" id="cb252-13" data-line-number="13">    <span class="st">&#39;http://localhost:8000/pecan/04-runpecan.php&#39;</span></a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="ex">curl</span> -v -X POST \</a>
+<a class="sourceLine" id="cb253-2" data-line-number="2">    -F <span class="st">&#39;hostname=docker&#39;</span> \</a>
+<a class="sourceLine" id="cb253-3" data-line-number="3">    -F <span class="st">&#39;modelid=5000000002&#39;</span> \</a>
+<a class="sourceLine" id="cb253-4" data-line-number="4">    -F <span class="st">&#39;sitegroupid=1&#39;</span> \</a>
+<a class="sourceLine" id="cb253-5" data-line-number="5">    -F <span class="st">&#39;siteid=772&#39;</span> \</a>
+<a class="sourceLine" id="cb253-6" data-line-number="6">    -F <span class="st">&#39;sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)&#39;</span> \</a>
+<a class="sourceLine" id="cb253-7" data-line-number="7">    -F <span class="st">&#39;pft[]=temperate.coniferous&#39;</span> \</a>
+<a class="sourceLine" id="cb253-8" data-line-number="8">    -F <span class="st">&#39;start=2004/01/01&#39;</span> \</a>
+<a class="sourceLine" id="cb253-9" data-line-number="9">    -F <span class="st">&#39;end=2004/12/31&#39;</span> \</a>
+<a class="sourceLine" id="cb253-10" data-line-number="10">    -F <span class="st">&#39;input_met=5000000005&#39;</span> \</a>
+<a class="sourceLine" id="cb253-11" data-line-number="11">    -F <span class="st">&#39;email=&#39;</span> \</a>
+<a class="sourceLine" id="cb253-12" data-line-number="12">    -F <span class="st">&#39;notes=&#39;</span> \</a>
+<a class="sourceLine" id="cb253-13" data-line-number="13">    <span class="st">&#39;http://localhost:8000/pecan/04-runpecan.php&#39;</span></a></code></pre></div>
 <p>This should return some text with in there <code>Location:</code> this is shows the workflow id, you can prepend <a href="http://localhost:8000/pecan/" class="uri">http://localhost:8000/pecan/</a> to the front of this, for example: <a href="http://localhost:8000/pecan/05-running.php?workflowid=99000000001" class="uri">http://localhost:8000/pecan/05-running.php?workflowid=99000000001</a>. Here you will be able to see the progress of the workflow.</p>
 <p>To see what is happening behind the scenes you can use look at the log file of the specific docker containers, once of interest are <code>pecan_executor_1</code> this is the container that will execute a single workflow and <code>pecan_sipnet_1</code> which executes the sipnet mode. To see the logs you use <code>docker logs pecan_executor_1</code> Following is an example output:</p>
 <pre><code>2018-06-13 15:50:37,903 [MainThread     ] INFO    : pika.adapters.base_connection - Connecting to 172.18.0.2:5672

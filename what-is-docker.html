@@ -189,16 +189,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-meta-analysis"><i class="fa fa-check"></i><b>7.1.6</b> <code>meta.analysis</code>: Trait Meta Analysis</a></li>
 <li class="chapter" data-level="7.1.7" data-path="pecanXML.html"><a href="pecanXML.html#xml-model"><i class="fa fa-check"></i><b>7.1.7</b> <code>model</code>: Model configuration</a></li>
 <li class="chapter" data-level="7.1.8" data-path="pecanXML.html"><a href="pecanXML.html#xml-run"><i class="fa fa-check"></i><b>7.1.8</b> <code>run</code>: Run Setup</a></li>
+<li class="chapter" data-level="7.1.9" data-path="pecanXML.html"><a href="pecanXML.html#xml-host"><i class="fa fa-check"></i><b>7.1.9</b> <code>host</code>: Host information for remote execution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-stable-advanced"><i class="fa fa-check"></i><b>7.2</b> Stable advanced features</a><ul>
+<li class="chapter" data-level="7.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-advanced"><i class="fa fa-check"></i><b>7.2</b> Advanced features</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-ensemble"><i class="fa fa-check"></i><b>7.2.1</b> <code>ensemble</code>: Ensemble Runs</a></li>
 <li class="chapter" data-level="7.2.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-sensitivity-analysis"><i class="fa fa-check"></i><b>7.2.2</b> <code>sensitivity.analysis</code>: Sensitivity analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="pecanXML.html"><a href="pecanXML.html#experimental-features"><i class="fa fa-check"></i><b>7.3</b> Experimental features</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-browndog"><i class="fa fa-check"></i><b>7.3.1</b> Brown Dog</a></li>
-<li class="chapter" data-level="7.3.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-state-data-assimilation"><i class="fa fa-check"></i><b>7.3.2</b> State Data Assimilation</a></li>
-<li class="chapter" data-level="7.3.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-parameter-data-assimilation"><i class="fa fa-check"></i><b>7.3.3</b> Parameter Data Assimilation</a></li>
-<li class="chapter" data-level="7.3.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-benchmarking"><i class="fa fa-check"></i><b>7.3.4</b> Benchmarking</a></li>
+<li class="chapter" data-level="7.2.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-parameter-data-assimilation"><i class="fa fa-check"></i><b>7.2.3</b> Parameter Data Assimilation</a></li>
+<li class="chapter" data-level="7.2.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-state-data-assimilation"><i class="fa fa-check"></i><b>7.2.4</b> (experimental) State Data Assimilation</a></li>
+<li class="chapter" data-level="7.2.5" data-path="pecanXML.html"><a href="pecanXML.html#xml-browndog"><i class="fa fa-check"></i><b>7.2.5</b> (experimental) Brown Dog</a></li>
+<li class="chapter" data-level="7.2.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-benchmarking"><i class="fa fa-check"></i><b>7.2.6</b> (experimental) Benchmarking</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="additional-web-configuration.html"><a href="additional-web-configuration.html"><i class="fa fa-check"></i><b>8</b> Additional web configuration</a><ul>
@@ -646,14 +645,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="working-with-docker" class="section level2">
 <h2><span class="header-section-number">33.1</span> Working with Docker</h2>
 <p>To run an image you will use the docker command line, for example:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb244-1" data-line-number="1"><span class="ex">docker</span> run \</a>
-<a class="sourceLine" id="cb244-2" data-line-number="2">    --detach \</a>
-<a class="sourceLine" id="cb244-3" data-line-number="3">    --rm \</a>
-<a class="sourceLine" id="cb244-4" data-line-number="4">    --name postgresql \</a>
-<a class="sourceLine" id="cb244-5" data-line-number="5">    --network pecan \</a>
-<a class="sourceLine" id="cb244-6" data-line-number="6">    --publish 9876:5432 \</a>
-<a class="sourceLine" id="cb244-7" data-line-number="7">    --volume <span class="va">${PWD}</span>/postgres:/var/lib/postgresql/data \</a>
-<a class="sourceLine" id="cb244-8" data-line-number="8">    mdillon/postgis:9.6-alpine</a></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="ex">docker</span> run \</a>
+<a class="sourceLine" id="cb245-2" data-line-number="2">    --detach \</a>
+<a class="sourceLine" id="cb245-3" data-line-number="3">    --rm \</a>
+<a class="sourceLine" id="cb245-4" data-line-number="4">    --name postgresql \</a>
+<a class="sourceLine" id="cb245-5" data-line-number="5">    --network pecan \</a>
+<a class="sourceLine" id="cb245-6" data-line-number="6">    --publish 9876:5432 \</a>
+<a class="sourceLine" id="cb245-7" data-line-number="7">    --volume <span class="va">${PWD}</span>/postgres:/var/lib/postgresql/data \</a>
+<a class="sourceLine" id="cb245-8" data-line-number="8">    mdillon/postgis:9.6-alpine</a></code></pre></div>
 <p>This will start for example the PostgreSQL+PostGIS container. The options used are:</p>
 <ul>
 <li><code>--detach</code> makes the container run in the background.</li>
@@ -672,9 +671,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>--env</code> sets environment variables, these are often used to change the behavior of the docker container.</p></li>
 </ul>
 <p>To see a list of all running containers you can use the following command:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="ex">docker</span> ps</a></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="ex">docker</span> ps</a></code></pre></div>
 <p>To see the log files of this container you use the following command (you can either use their name or id as returned by <code>docker ps</code>). The -f flag will follow the stdout/stderr from the container, use Ctrl-C to stop following the stdout/stderr.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="ex">docker</span> logs -f postgresql</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="ex">docker</span> logs -f postgresql</a></code></pre></div>
 <p>To stop a running container use:</p>
 <pre><code>docker stop postgresql</code></pre>
 <p>Containers that are started without the <code>--detach</code> can be stopped by pressing Ctrl-C, if you have started containers in the background they will keep on running until the machine is restarted or the container is stopped using <code>docker stop</code></p>
@@ -682,14 +681,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="working-with-docker-compose" class="section level2">
 <h2><span class="header-section-number">33.2</span> Working with docker-compose</h2>
 <p>In the case of PEcAn we have multiple docker containers that we want to work together. To help with this we can use docker-compose. This will take a file as input that lists all the containers that make up the application and the dependencies between these containers. For example in the case of BETY we need the postgres container as well as the BETY container.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="fu">version:</span><span class="at"> </span><span class="st">&quot;3&quot;</span></a>
-<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="fu">services:</span></a>
-<a class="sourceLine" id="cb248-3" data-line-number="3">  <span class="fu">postgres:</span></a>
-<a class="sourceLine" id="cb248-4" data-line-number="4">    <span class="fu">image:</span><span class="at"> mdillon/postgis:9.5</span></a>
-<a class="sourceLine" id="cb248-5" data-line-number="5">  <span class="fu">bety:</span></a>
-<a class="sourceLine" id="cb248-6" data-line-number="6">    <span class="fu">image:</span><span class="at"> pecan/bety</span></a>
-<a class="sourceLine" id="cb248-7" data-line-number="7">    <span class="fu">depends_on:</span></a>
-<a class="sourceLine" id="cb248-8" data-line-number="8">      <span class="kw">-</span> postgres</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="fu">version:</span><span class="at"> </span><span class="st">&quot;3&quot;</span></a>
+<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="fu">services:</span></a>
+<a class="sourceLine" id="cb249-3" data-line-number="3">  <span class="fu">postgres:</span></a>
+<a class="sourceLine" id="cb249-4" data-line-number="4">    <span class="fu">image:</span><span class="at"> mdillon/postgis:9.5</span></a>
+<a class="sourceLine" id="cb249-5" data-line-number="5">  <span class="fu">bety:</span></a>
+<a class="sourceLine" id="cb249-6" data-line-number="6">    <span class="fu">image:</span><span class="at"> pecan/bety</span></a>
+<a class="sourceLine" id="cb249-7" data-line-number="7">    <span class="fu">depends_on:</span></a>
+<a class="sourceLine" id="cb249-8" data-line-number="8">      <span class="kw">-</span> postgres</a></code></pre></div>
 <p>This simple file allows us to bring up a full BETY application with both database and BETY application. The BETY app will not be brought up until the database container has started.</p>
 <p>You can now start this application using:</p>
 <pre><code>docker-compose up</code></pre>
