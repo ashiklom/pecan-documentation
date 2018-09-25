@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="pecan-docker-architecture.html">
-<link rel="next" href="dockerfiles-for-models.html">
+<link rel="prev" href="available-meteorological-drivers.html">
+<link rel="next" href="pecan-docker-architecture.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -632,89 +632,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="docker-quickstart" class="section level1">
-<h1><span class="header-section-number">35</span> Quickstart for Docker and PEcAn</h1>
-<p>This is a short documentation on how to start with Docker and PEcAn. This will not go into much detail about about how to use docker.</p>
-<div id="install-docker" class="section level2">
-<h2><span class="header-section-number">35.1</span> Install Docker</h2>
-<p>You will need to install docker first. See <a href="https://www.docker.com/community-edition#/download" class="uri">https://www.docker.com/community-edition#/download</a></p>
+<div id="docker-intro" class="section level1">
+<h1><span class="header-section-number">33</span> What is Docker?</h1>
+<p>Docker is a relativly new technology to encapsulate software as a service. This allow for simple distribution of software since all depedencies are installed as well. Unlike traditional VM’s, in docker each component will only run a single service/process and is build on top of existing services provided by the host OS (such as disk access, networking, memory managment etc.). To create a complex system such as PEcAn, we take multiple of these components and link them together.</p>
+<p>A common term used in docker is that of an image or container. This refers to all the software needed to run a single service, including the service itself, bundled and installed. The difference between an image and a container is that a container is the execution of an image (in object oriented programming, an image is a class and a container is an instance of the class). When creating docker images a good mental model to follow is to have a single process per container, and have multiple containers together create an application.</p>
+<p>For example in the case of BETY we will need at least two processes, the database and the BETY web application. When distributing a VM with the BETY application we will need to create VM with a base OS (in our case this would be Ubuntu), a database (PostgreSQL) and the BETY web-app (ruby). This requires us to install the dependencies and applications. In the case of Docker, we will need a container for the database (standard PostGIS container) as well as the custom BETY container (build on top of the existing Ruby container), both running on a host OS (coreOS for example). When starting BETY we start the PostGIS container first, and next start the BETY container telling it where it can find the PostGIS container. To upgrade we stop the BETY container, download the latest version, tell it to upgrade the database, and start the BETY container. There is no need to install new dependencies for BETY since they are all shipped as part of the container.</p>
+<p>The containers that work together to build an application, BETY or PEcAn, is often referred to as a stack. Using docker we can have multiple of these stacks run in parallel. For example we can have two PEcAn stacks running next to each other. To separate these stacks each of them is given a unique name, and all containers are prefixed with this name. Inside these stacks the containers can talk with each other using the generic names, for example they can use postgres to talk to the postgres database. To prevent different stacks from talking to the wrong container, each stack has its own network. This will only allow those containers in the same network to talk to each other. Finally when starting the stack you can define explicitly what external port maps to what port inside the containers, or let docker pick them. In the case of PEcAn we will automatically connect all containers to the pecan network.</p>
+<p>In the case of PEcAn we want to use this ability to ship all dependencies as part of the image to make it easier for the users to download a new model, since the image will contain everything that is needed to run the model as part of PEcAn. If two models depend on different versions of the library we no longer need to worry on how to install these models next to each other and creating issues with the libraries used. Each image will contain only a single model and all libraries needed by that model.</p>
+<p>The next section, <a href="02-architecture.md">architecture</a> will go in more detail on the containers that make up the PEcAn framework and how these containers interact with each other.</p>
+<div id="working-with-docker" class="section level2">
+<h2><span class="header-section-number">33.1</span> Working with Docker</h2>
+<p>To run an image you will use the docker command line, for example:</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="ex">docker</span> run \</a>
+<a class="sourceLine" id="cb245-2" data-line-number="2">    --detach \</a>
+<a class="sourceLine" id="cb245-3" data-line-number="3">    --rm \</a>
+<a class="sourceLine" id="cb245-4" data-line-number="4">    --name postgresql \</a>
+<a class="sourceLine" id="cb245-5" data-line-number="5">    --network pecan \</a>
+<a class="sourceLine" id="cb245-6" data-line-number="6">    --publish 9876:5432 \</a>
+<a class="sourceLine" id="cb245-7" data-line-number="7">    --volume <span class="va">${PWD}</span>/postgres:/var/lib/postgresql/data \</a>
+<a class="sourceLine" id="cb245-8" data-line-number="8">    mdillon/postgis:9.6-alpine</a></code></pre></div>
+<p>This will start for example the PostgreSQL+PostGIS container. The options used are:</p>
+<ul>
+<li><code>--detach</code> makes the container run in the background.</li>
+<li><code>--rm</code> removes the container when it is finished (make sure to use the volume below).</li>
+<li><code>--name</code> the name of the container, also the hostname of the container which can be used by other docker containers in the same network inside docker.</li>
+<li><code>--network pecan</code> the network that the container should be running in, this leverages of network isolation in docker and allows this container to be connected to by others using the postgresql hostname.</li>
+<li><code>--publish</code> exposes the port to the outside world, this is like ssh, and maps port 9876 to port 5432 in the docker container</li>
+<li><code>--volume</code> maps a folder on your local machine to the machine in the container. This allows you to save data on your local machine.</li>
+<li><code>mdillon/postgis:9.6-alpine</code> is the actual image that will be run, in this case it comes from the group/person mdillon, the container is postgis and the version 9.6-alpine (version 9.6 build on alpine linux).</li>
+</ul>
+<p>Other options that might be used:</p>
+<ul>
+<li><p><code>--link</code> makes it such that two containers can see each other.</p></li>
+<li><code>--tty</code> allocate a pseudo-TTY to send stdout and stderr back to the console.</li>
+<li><code>--interactive</code> keeps stdin open so the user can interact with the application running.</li>
+<li><p><code>--env</code> sets environment variables, these are often used to change the behavior of the docker container.</p></li>
+</ul>
+<p>To see a list of all running containers you can use the following command:</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="ex">docker</span> ps</a></code></pre></div>
+<p>To see the log files of this container you use the following command (you can either use their name or id as returned by <code>docker ps</code>). The -f flag will follow the stdout/stderr from the container, use Ctrl-C to stop following the stdout/stderr.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="ex">docker</span> logs -f postgresql</a></code></pre></div>
+<p>To stop a running container use:</p>
+<pre><code>docker stop postgresql</code></pre>
+<p>Containers that are started without the <code>--detach</code> can be stopped by pressing Ctrl-C, if you have started containers in the background they will keep on running until the machine is restarted or the container is stopped using <code>docker stop</code></p>
 </div>
-<div id="running-pecan" class="section level2">
-<h2><span class="header-section-number">35.2</span> Running PEcAn</h2>
-<p>We will use a yaml file to describe the containers that we make up, This yaml file is called <a href="https://github.com/PecanProject/pecan/blob/master/docker-compose.yml">docker-compose.yml</a>. Before you get started you will need to download this file first. Place this file somewhere on your machine and cd to the folder that contains this file.</p>
-<p>Next we will start the docker containers to start Docker. Since both BETY and PEcAn depend on a populated database we will first start the database and populate it with some data. This only needs to be done once, if this is done already, you can skip this step and go to the next step</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="ex">docker-compose</span> -p pecan up -d postgres</a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="ex">docker</span> run -ti --rm \</a>
-<a class="sourceLine" id="cb251-3" data-line-number="3">    --network pecan_pecan \</a>
-<a class="sourceLine" id="cb251-4" data-line-number="4">    hub.ncsa.illinois.edu/pecan/bety:latest initialize</a>
-<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="ex">docker</span> run -ti --rm \</a>
-<a class="sourceLine" id="cb251-6" data-line-number="6">    --network pecan_pecan \</a>
-<a class="sourceLine" id="cb251-7" data-line-number="7">    --volume pecan_pecan:/data \</a>
-<a class="sourceLine" id="cb251-8" data-line-number="8">    hub.ncsa.illinois.edu/pecan/data:develop</a></code></pre></div>
-<p>If this is finished (or you had done this in the past), we can start the full stack:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="ex">docker-compose</span> -p pecan up -d</a></code></pre></div>
-<p>This will start all the containers marked green in the architecture diagram. Once this is done you have a working instance of PEcAn. Following is a list of URL’s you can visit</p>
-<table>
-<colgroup>
-<col width="34%" />
-<col width="65%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>URL</th>
-<th>Service</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="http://localhost:8000/pecan/" class="uri">http://localhost:8000/pecan/</a></td>
-<td>PEcAn web GUI</td>
-</tr>
-<tr class="even">
-<td><a href="http://localhost:8000/bety/" class="uri">http://localhost:8000/bety/</a></td>
-<td>BETY web application</td>
-</tr>
-<tr class="odd">
-<td><a href="http://localhost:8000/minio/" class="uri">http://localhost:8000/minio/</a></td>
-<td>File browser (username carya, password illinois)</td>
-</tr>
-<tr class="even">
-<td><a href="http://localhost:8000/" class="uri">http://localhost:8000/</a></td>
-<td>RabbitMQ (username guest, password guest)</td>
-</tr>
-<tr class="odd">
-<td><a href="http://localhost:8001/" class="uri">http://localhost:8001/</a></td>
-<td>Træfik, webserver shows mapping from url to container</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="testing-pecan" class="section level2">
-<h2><span class="header-section-number">35.3</span> Testing PEcAn</h2>
-<p>To test PEcAn you can use the following curl statement, or use the webpage to submit a request:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="ex">curl</span> -v -X POST \</a>
-<a class="sourceLine" id="cb253-2" data-line-number="2">    -F <span class="st">&#39;hostname=docker&#39;</span> \</a>
-<a class="sourceLine" id="cb253-3" data-line-number="3">    -F <span class="st">&#39;modelid=5000000002&#39;</span> \</a>
-<a class="sourceLine" id="cb253-4" data-line-number="4">    -F <span class="st">&#39;sitegroupid=1&#39;</span> \</a>
-<a class="sourceLine" id="cb253-5" data-line-number="5">    -F <span class="st">&#39;siteid=772&#39;</span> \</a>
-<a class="sourceLine" id="cb253-6" data-line-number="6">    -F <span class="st">&#39;sitename=Niwot Ridge Forest/LTER NWT1 (US-NR1)&#39;</span> \</a>
-<a class="sourceLine" id="cb253-7" data-line-number="7">    -F <span class="st">&#39;pft[]=temperate.coniferous&#39;</span> \</a>
-<a class="sourceLine" id="cb253-8" data-line-number="8">    -F <span class="st">&#39;start=2004/01/01&#39;</span> \</a>
-<a class="sourceLine" id="cb253-9" data-line-number="9">    -F <span class="st">&#39;end=2004/12/31&#39;</span> \</a>
-<a class="sourceLine" id="cb253-10" data-line-number="10">    -F <span class="st">&#39;input_met=5000000005&#39;</span> \</a>
-<a class="sourceLine" id="cb253-11" data-line-number="11">    -F <span class="st">&#39;email=&#39;</span> \</a>
-<a class="sourceLine" id="cb253-12" data-line-number="12">    -F <span class="st">&#39;notes=&#39;</span> \</a>
-<a class="sourceLine" id="cb253-13" data-line-number="13">    <span class="st">&#39;http://localhost:8000/pecan/04-runpecan.php&#39;</span></a></code></pre></div>
-<p>This should return some text with in there <code>Location:</code> this is shows the workflow id, you can prepend <a href="http://localhost:8000/pecan/" class="uri">http://localhost:8000/pecan/</a> to the front of this, for example: <a href="http://localhost:8000/pecan/05-running.php?workflowid=99000000001" class="uri">http://localhost:8000/pecan/05-running.php?workflowid=99000000001</a>. Here you will be able to see the progress of the workflow.</p>
-<p>To see what is happening behind the scenes you can use look at the log file of the specific docker containers, once of interest are <code>pecan_executor_1</code> this is the container that will execute a single workflow and <code>pecan_sipnet_1</code> which executes the sipnet mode. To see the logs you use <code>docker logs pecan_executor_1</code> Following is an example output:</p>
-<pre><code>2018-06-13 15:50:37,903 [MainThread     ] INFO    : pika.adapters.base_connection - Connecting to 172.18.0.2:5672
-2018-06-13 15:50:37,924 [MainThread     ] INFO    : pika.adapters.blocking_connection - Created channel=1
-2018-06-13 15:50:37,941 [MainThread     ] INFO    : root -  [*] Waiting for messages. To exit press CTRL+C
-2018-06-13 19:44:49,523 [MainThread     ] INFO    : root - b&#39;{&quot;folder&quot;: &quot;/data/workflows/PEcAn_99000000001&quot;, &quot;workflowid&quot;: &quot;99000000001&quot;}&#39;
-2018-06-13 19:44:49,524 [MainThread     ] INFO    : root - Starting job in /data/workflows/PEcAn_99000000001.
-2018-06-13 19:45:15,555 [MainThread     ] INFO    : root - Finished running job.</code></pre>
-<p>This shows that the executor connects to RabbitMQ, waits for messages. Once it picks up a message it will print the message, and execute the workflow in the folder passed in with the message. Once the workflow (including any model executions) is finished it will print Finished. The log file for <code>pecan_sipnet_1</code> is very similar, in this case it runs the <code>job.sh</code> in the run folder.</p>
-<p>To run multiple executors in parallel you can duplicate the executor section in the docker-compose file and just rename it from executor to executor1 and executor2 for example. The same can be done for the models. To make this easier it helps to deploy the containers using kubernetes allowing to easily scale up and down the containers.</p>
+<div id="working-with-docker-compose" class="section level2">
+<h2><span class="header-section-number">33.2</span> Working with docker-compose</h2>
+<p>In the case of PEcAn we have multiple docker containers that we want to work together. To help with this we can use docker-compose. This will take a file as input that lists all the containers that make up the application and the dependencies between these containers. For example in the case of BETY we need the postgres container as well as the BETY container.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="fu">version:</span><span class="at"> </span><span class="st">&quot;3&quot;</span></a>
+<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="fu">services:</span></a>
+<a class="sourceLine" id="cb249-3" data-line-number="3">  <span class="fu">postgres:</span></a>
+<a class="sourceLine" id="cb249-4" data-line-number="4">    <span class="fu">image:</span><span class="at"> mdillon/postgis:9.5</span></a>
+<a class="sourceLine" id="cb249-5" data-line-number="5">  <span class="fu">bety:</span></a>
+<a class="sourceLine" id="cb249-6" data-line-number="6">    <span class="fu">image:</span><span class="at"> pecan/bety</span></a>
+<a class="sourceLine" id="cb249-7" data-line-number="7">    <span class="fu">depends_on:</span></a>
+<a class="sourceLine" id="cb249-8" data-line-number="8">      <span class="kw">-</span> postgres</a></code></pre></div>
+<p>This simple file allows us to bring up a full BETY application with both database and BETY application. The BETY app will not be brought up until the database container has started.</p>
+<p>You can now start this application using:</p>
+<pre><code>docker-compose up</code></pre>
+<p>This will start the application, and you will see the log files for the 2 different containers.</p>
 
 </div>
 </div>
@@ -723,8 +699,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="pecan-docker-architecture.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dockerfiles-for-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="available-meteorological-drivers.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pecan-docker-architecture.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

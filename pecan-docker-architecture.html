@@ -24,14 +24,14 @@
 
 
 
-<meta name="date" content="2018-09-20">
+<meta name="date" content="2018-09-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="what-is-docker.html">
+<link rel="prev" href="docker-intro.html">
 <link rel="next" href="docker-quickstart.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -160,15 +160,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.1" data-path="GettingStarted.html"><a href="GettingStarted.html#basicvm"><i class="fa fa-check"></i><b>4.2.1</b> Using the Virtual Machine</a></li>
 <li class="chapter" data-level="4.2.2" data-path="GettingStarted.html"><a href="GettingStarted.html#awsvm"><i class="fa fa-check"></i><b>4.2.2</b> Using Amazon Web Services (AWS)</a></li>
 <li class="chapter" data-level="4.2.3" data-path="GettingStarted.html"><a href="GettingStarted.html#dockervm"><i class="fa fa-check"></i><b>4.2.3</b> (Experimental) Using Docker</a></li>
+<li class="chapter" data-level="4.2.4" data-path="GettingStarted.html"><a href="GettingStarted.html#advanced-installing-by-hand"><i class="fa fa-check"></i><b>4.2.4</b> (Advanced) Installing by hand</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="GettingStarted.html"><a href="GettingStarted.html#pecan-demos"><i class="fa fa-check"></i><b>4.3</b> PEcAn Demos</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="web-workflow.html"><a href="web-workflow.html"><i class="fa fa-check"></i><b>5</b> Web workflow</a><ul>
-<li class="chapter" data-level="5.1" data-path="web-workflow.html"><a href="web-workflow.html#site-and-model-selection"><i class="fa fa-check"></i><b>5.1</b> Site and model selection</a><ul>
+<li class="chapter" data-level="5.1" data-path="web-workflow.html"><a href="web-workflow.html#web-site-model"><i class="fa fa-check"></i><b>5.1</b> Site and model selection</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="web-workflow.html"><a href="web-workflow.html#selecting-a-model"><i class="fa fa-check"></i><b>5.1.1</b> Selecting a model</a></li>
 <li class="chapter" data-level="5.1.2" data-path="web-workflow.html"><a href="web-workflow.html#selecting-a-site"><i class="fa fa-check"></i><b>5.1.2</b> Selecting a site</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="web-workflow.html"><a href="web-workflow.html#model-configuration"><i class="fa fa-check"></i><b>5.2</b> Model configuration</a><ul>
+<li class="chapter" data-level="5.2" data-path="web-workflow.html"><a href="web-workflow.html#web-model-config"><i class="fa fa-check"></i><b>5.2</b> Model configuration</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="web-workflow.html"><a href="web-workflow.html#choosing-meteorology"><i class="fa fa-check"></i><b>5.2.1</b> Choosing meteorology</a></li>
 <li class="chapter" data-level="5.2.2" data-path="web-workflow.html"><a href="web-workflow.html#selecting-plant-functional-types-pfts-and-other-parameter-groupings."><i class="fa fa-check"></i><b>5.2.2</b> Selecting Plant Functional Types (PFTs) and other parameter groupings.</a></li>
 <li class="chapter" data-level="5.2.3" data-path="web-workflow.html"><a href="web-workflow.html#choosing-initial-vegetation"><i class="fa fa-check"></i><b>5.2.3</b> Choosing initial vegetation</a></li>
@@ -184,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="pecanXML.html"><a href="pecanXML.html#xml-structure"><i class="fa fa-check"></i><b>7.1.1</b> Top-level structure</a></li>
 <li class="chapter" data-level="7.1.2" data-path="pecanXML.html"><a href="pecanXML.html#xml-info"><i class="fa fa-check"></i><b>7.1.2</b> <code>info</code>: Run metadata</a></li>
 <li class="chapter" data-level="7.1.3" data-path="pecanXML.html"><a href="pecanXML.html#xml-outdir"><i class="fa fa-check"></i><b>7.1.3</b> <code>outdir</code>: Output directory</a></li>
-<li class="chapter" data-level="7.1.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-database"><i class="fa fa-check"></i><b>7.1.4</b> <code>database</code>: Bety and other database settings</a></li>
+<li class="chapter" data-level="7.1.4" data-path="pecanXML.html"><a href="pecanXML.html#xml-database"><i class="fa fa-check"></i><b>7.1.4</b> <code>database</code>: PEcAn database settings</a></li>
 <li class="chapter" data-level="7.1.5" data-path="pecanXML.html"><a href="pecanXML.html#xml-pft"><i class="fa fa-check"></i><b>7.1.5</b> <code>pft</code>: Plant functional type selection</a></li>
 <li class="chapter" data-level="7.1.6" data-path="pecanXML.html"><a href="pecanXML.html#xml-meta-analysis"><i class="fa fa-check"></i><b>7.1.6</b> <code>meta.analysis</code>: Trait Meta Analysis</a></li>
 <li class="chapter" data-level="7.1.7" data-path="pecanXML.html"><a href="pecanXML.html#xml-model"><i class="fa fa-check"></i><b>7.1.7</b> <code>model</code>: Model configuration</a></li>
@@ -207,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="additional-web-configuration.html"><a href="additional-web-configuration.html#basic-setups"><i class="fa fa-check"></i><b>8.4</b> Basic Setups</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html"><i class="fa fa-check"></i><b>9</b> Settings-configured analyses</a><ul>
-<li class="chapter" data-level="9.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#parameter-data-assimilation-pda"><i class="fa fa-check"></i><b>9.1</b> Parameter data assimilation (PDA)</a><ul>
+<li class="chapter" data-level="9.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#pda"><i class="fa fa-check"></i><b>9.1</b> Parameter data assimilation (PDA)</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#pda.mcmc.r"><i class="fa fa-check"></i><b>9.1.1</b> <strong>pda.mcmc.R</strong></a></li>
 <li class="chapter" data-level="9.1.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#pda.mcmc.bs.r"><i class="fa fa-check"></i><b>9.1.2</b> <strong>pda.mcmc.bs.R</strong></a></li>
 <li class="chapter" data-level="9.1.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#pda.emulator"><i class="fa fa-check"></i><b>9.1.3</b> <strong>pda.emulator</strong></a></li>
@@ -216,56 +217,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.6" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#get.da.data..r-plot.da.r"><i class="fa fa-check"></i><b>9.1.6</b> <strong>get.da.data.*.R, plot.da.R</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#for-a-detailed-usage-of-the-module-please-see-the-vignette-under-modulesassim.batchvignettes"><i class="fa fa-check"></i><b>9.2</b> For a detailed usage of the module, please see the vignette under <strong>/modules/assim.batch/vignettes</strong></a></li>
-<li class="chapter" data-level="9.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#state-data-assimilation-sda"><i class="fa fa-check"></i><b>9.3</b> State data assimilation (SDA)</a></li>
-<li class="chapter" data-level="9.4" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sda.enkf.r-is-housed-within-pecanmodulesassim.sequentialr"><i class="fa fa-check"></i><b>9.4</b> sda.enkf.R is housed within: <strong>/pecan/modules/assim.sequential/R</strong></a></li>
-<li class="chapter" data-level="9.5" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#the-tree-ring-tutorial-is-housed-within-pecandocumentationtutorialsstateassimilation"><i class="fa fa-check"></i><b>9.5</b> The tree ring tutorial is housed within: <strong>/pecan/documentation/tutorials/StateAssimilation</strong></a></li>
-<li class="chapter" data-level="9.6" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#more-descriptive-sda-methods-can-be-found-at-pecanbook_sourceadve_user_guide_websda_methods.rmd"><i class="fa fa-check"></i><b>9.6</b> More descriptive SDA methods can be found at: <strong>/pecan/book_source/adve_user_guide_web/SDA_Methods.Rmd</strong></a><ul>
-<li class="chapter" data-level="9.6.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sda.enkf.r-description"><i class="fa fa-check"></i><b>9.6.1</b> <strong>sda.enkf.R Description</strong></a></li>
-<li class="chapter" data-level="9.6.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sda.enkf.r-arguments"><i class="fa fa-check"></i><b>9.6.2</b> <strong>sda.enkf.R Arguments</strong></a></li>
-<li class="chapter" data-level="9.6.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#state-data-assimilation-workflow"><i class="fa fa-check"></i><b>9.6.3</b> State Data Assimilation Workflow</a></li>
-<li class="chapter" data-level="9.6.4" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#state-data-assimilation-tags-example"><i class="fa fa-check"></i><b>9.6.4</b> State Data Assimilation Tags Example</a></li>
-<li class="chapter" data-level="9.6.5" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#state-data-assimilation-tags-descriptions"><i class="fa fa-check"></i><b>9.6.5</b> State Data Assimilation Tags Descriptions</a></li>
-<li class="chapter" data-level="9.6.6" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#model-specific-functions-for-sda-workflow"><i class="fa fa-check"></i><b>9.6.6</b> Model Specific Functions for SDA Workflow</a></li>
-<li class="chapter" data-level="9.6.7" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#analysis-options"><i class="fa fa-check"></i><b>9.6.7</b> Analysis Options</a></li>
-<li class="chapter" data-level="9.6.8" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#the-generalized-ensemble-filter"><i class="fa fa-check"></i><b>9.6.8</b> The Generalized Ensemble Filter</a></li>
+<li class="chapter" data-level="9.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sda"><i class="fa fa-check"></i><b>9.3</b> State data assimilation (SDA)</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sda.enkf.r-description"><i class="fa fa-check"></i><b>9.3.1</b> <strong>sda.enkf.R Description</strong></a></li>
+<li class="chapter" data-level="9.3.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sda.enkf.r-arguments"><i class="fa fa-check"></i><b>9.3.2</b> <strong>sda.enkf.R Arguments</strong></a></li>
+<li class="chapter" data-level="9.3.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#state-data-assimilation-workflow"><i class="fa fa-check"></i><b>9.3.3</b> State Data Assimilation Workflow</a></li>
+<li class="chapter" data-level="9.3.4" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#state-data-assimilation-tags-example"><i class="fa fa-check"></i><b>9.3.4</b> State Data Assimilation Tags Example</a></li>
+<li class="chapter" data-level="9.3.5" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#state-data-assimilation-tags-descriptions"><i class="fa fa-check"></i><b>9.3.5</b> State Data Assimilation Tags Descriptions</a></li>
+<li class="chapter" data-level="9.3.6" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#model-specific-functions-for-sda-workflow"><i class="fa fa-check"></i><b>9.3.6</b> Model Specific Functions for SDA Workflow</a></li>
+<li class="chapter" data-level="9.3.7" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#analysis-options"><i class="fa fa-check"></i><b>9.3.7</b> Analysis Options</a></li>
+<li class="chapter" data-level="9.3.8" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#the-generalized-ensemble-filter"><i class="fa fa-check"></i><b>9.3.8</b> The Generalized Ensemble Filter</a></li>
 </ul></li>
-<li class="chapter" data-level="9.7" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sda_methods"><i class="fa fa-check"></i><b>9.7</b> SDA_Methods</a></li>
-<li class="chapter" data-level="9.8" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#data-products"><i class="fa fa-check"></i><b>9.8</b> Data Products</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#tree-rings"><i class="fa fa-check"></i><b>9.8.1</b> Tree Rings</a></li>
-<li class="chapter" data-level="9.8.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#pollen"><i class="fa fa-check"></i><b>9.8.2</b> Pollen</a></li>
+<li class="chapter" data-level="9.4" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sda_methods"><i class="fa fa-check"></i><b>9.4</b> SDA_Methods</a></li>
+<li class="chapter" data-level="9.5" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#data-products"><i class="fa fa-check"></i><b>9.5</b> Data Products</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#tree-rings"><i class="fa fa-check"></i><b>9.5.1</b> Tree Rings</a></li>
+<li class="chapter" data-level="9.5.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#pollen"><i class="fa fa-check"></i><b>9.5.2</b> Pollen</a></li>
 </ul></li>
-<li class="chapter" data-level="9.9" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#current-models"><i class="fa fa-check"></i><b>9.9</b> Current Models</a></li>
-<li class="chapter" data-level="9.10" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#model-calibration"><i class="fa fa-check"></i><b>9.10</b> Model Calibration</a></li>
-<li class="chapter" data-level="9.11" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#initial-conditions"><i class="fa fa-check"></i><b>9.11</b> Initial Conditions</a></li>
-<li class="chapter" data-level="9.12" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#drivers"><i class="fa fa-check"></i><b>9.12</b> Drivers</a></li>
-<li class="chapter" data-level="9.13" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sequential-state-data-assimilation"><i class="fa fa-check"></i><b>9.13</b> Sequential State Data Assimilation</a><ul>
-<li class="chapter" data-level="9.13.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#general-description"><i class="fa fa-check"></i><b>9.13.1</b> General Description</a></li>
-<li class="chapter" data-level="9.13.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#enkf"><i class="fa fa-check"></i><b>9.13.2</b> EnKF</a></li>
-<li class="chapter" data-level="9.13.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#generalized-ensemble-filter"><i class="fa fa-check"></i><b>9.13.3</b> Generalized Ensemble Filter</a></li>
-<li class="chapter" data-level="9.13.4" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#ensemble-adjustment"><i class="fa fa-check"></i><b>9.13.4</b> Ensemble Adjustment</a></li>
-<li class="chapter" data-level="9.13.5" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#diagnostics"><i class="fa fa-check"></i><b>9.13.5</b> Diagnostics</a></li>
+<li class="chapter" data-level="9.6" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#current-models"><i class="fa fa-check"></i><b>9.6</b> Current Models</a></li>
+<li class="chapter" data-level="9.7" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#model-calibration"><i class="fa fa-check"></i><b>9.7</b> Model Calibration</a></li>
+<li class="chapter" data-level="9.8" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#initial-conditions"><i class="fa fa-check"></i><b>9.8</b> Initial Conditions</a></li>
+<li class="chapter" data-level="9.9" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#drivers"><i class="fa fa-check"></i><b>9.9</b> Drivers</a></li>
+<li class="chapter" data-level="9.10" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#sequential-state-data-assimilation"><i class="fa fa-check"></i><b>9.10</b> Sequential State Data Assimilation</a><ul>
+<li class="chapter" data-level="9.10.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#general-description"><i class="fa fa-check"></i><b>9.10.1</b> General Description</a></li>
+<li class="chapter" data-level="9.10.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#enkf"><i class="fa fa-check"></i><b>9.10.2</b> EnKF</a></li>
+<li class="chapter" data-level="9.10.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#generalized-ensemble-filter"><i class="fa fa-check"></i><b>9.10.3</b> Generalized Ensemble Filter</a></li>
+<li class="chapter" data-level="9.10.4" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#ensemble-adjustment"><i class="fa fa-check"></i><b>9.10.4</b> Ensemble Adjustment</a></li>
+<li class="chapter" data-level="9.10.5" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#diagnostics"><i class="fa fa-check"></i><b>9.10.5</b> Diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="9.14" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#multisettings"><i class="fa fa-check"></i><b>9.14</b> MultiSettings</a></li>
-<li class="chapter" data-level="9.15" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#Benchmarking"><i class="fa fa-check"></i><b>9.15</b> Benchmarking</a><ul>
-<li class="chapter" data-level="9.15.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#data-preparation"><i class="fa fa-check"></i><b>9.15.1</b> Data Preparation</a></li>
-<li class="chapter" data-level="9.15.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#model-runs"><i class="fa fa-check"></i><b>9.15.2</b> Model Runs</a></li>
-<li class="chapter" data-level="9.15.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#the-benchmarking-shiny-app"><i class="fa fa-check"></i><b>9.15.3</b> The Benchmarking Shiny App</a></li>
-<li class="chapter" data-level="9.15.4" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#benchmarking-in-pecan.xml"><i class="fa fa-check"></i><b>9.15.4</b> Benchmarking in pecan.xml</a></li>
+<li class="chapter" data-level="9.11" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#multisettings"><i class="fa fa-check"></i><b>9.11</b> MultiSettings</a></li>
+<li class="chapter" data-level="9.12" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#Benchmarking"><i class="fa fa-check"></i><b>9.12</b> Benchmarking</a><ul>
+<li class="chapter" data-level="9.12.1" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#data-preparation"><i class="fa fa-check"></i><b>9.12.1</b> Data Preparation</a></li>
+<li class="chapter" data-level="9.12.2" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#model-runs"><i class="fa fa-check"></i><b>9.12.2</b> Model Runs</a></li>
+<li class="chapter" data-level="9.12.3" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#the-benchmarking-shiny-app"><i class="fa fa-check"></i><b>9.12.3</b> The Benchmarking Shiny App</a></li>
+<li class="chapter" data-level="9.12.4" data-path="settings-configured-analyses.html"><a href="settings-configured-analyses.html#benchmarking-in-pecan.xml"><i class="fa fa-check"></i><b>9.12.4</b> Benchmarking in pecan.xml</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html"><i class="fa fa-check"></i><b>10</b> Remote execution with PEcAn</a><ul>
-<li class="chapter" data-level="10.1" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#basics-of-ssh"><i class="fa fa-check"></i><b>10.1</b> Basics of SSH</a></li>
-<li class="chapter" data-level="10.2" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#ssh-authentication-password-vs.ssh-key"><i class="fa fa-check"></i><b>10.2</b> SSH authentication – password vs. SSH key</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#ssh-tunneling"><i class="fa fa-check"></i><b>10.2.1</b> SSH tunneling</a></li>
-<li class="chapter" data-level="10.2.2" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#ssh-tunnels-and-pecan"><i class="fa fa-check"></i><b>10.2.2</b> SSH tunnels and PEcAn</a></li>
+<li class="chapter" data-level="10" data-path="pecan-remote.html"><a href="pecan-remote.html"><i class="fa fa-check"></i><b>10</b> Remote execution with PEcAn</a><ul>
+<li class="chapter" data-level="10.1" data-path="pecan-remote.html"><a href="pecan-remote.html#basics-of-ssh"><i class="fa fa-check"></i><b>10.1</b> Basics of SSH</a></li>
+<li class="chapter" data-level="10.2" data-path="pecan-remote.html"><a href="pecan-remote.html#ssh-authentication-password-vs.ssh-key"><i class="fa fa-check"></i><b>10.2</b> SSH authentication – password vs. SSH key</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="pecan-remote.html"><a href="pecan-remote.html#ssh-tunneling"><i class="fa fa-check"></i><b>10.2.1</b> SSH tunneling</a></li>
+<li class="chapter" data-level="10.2.2" data-path="pecan-remote.html"><a href="pecan-remote.html#ssh-tunnels-and-pecan"><i class="fa fa-check"></i><b>10.2.2</b> SSH tunnels and PEcAn</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#basic-remote-execute-functions"><i class="fa fa-check"></i><b>10.3</b> Basic remote execute functions</a></li>
-<li class="chapter" data-level="10.4" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#remote-model-execution-with-pecan"><i class="fa fa-check"></i><b>10.4</b> Remote model execution with PEcAn</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#xml-configuration"><i class="fa fa-check"></i><b>10.4.1</b> XML configuration</a></li>
-<li class="chapter" data-level="10.4.2" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#configuration-for-pecan-web-interface"><i class="fa fa-check"></i><b>10.4.2</b> Configuration for PEcAn web interface</a></li>
+<li class="chapter" data-level="10.3" data-path="pecan-remote.html"><a href="pecan-remote.html#basic-remote-execute-functions"><i class="fa fa-check"></i><b>10.3</b> Basic remote execute functions</a></li>
+<li class="chapter" data-level="10.4" data-path="pecan-remote.html"><a href="pecan-remote.html#remote-model-execution-with-pecan"><i class="fa fa-check"></i><b>10.4</b> Remote model execution with PEcAn</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="pecan-remote.html"><a href="pecan-remote.html#xml-configuration"><i class="fa fa-check"></i><b>10.4.1</b> XML configuration</a></li>
+<li class="chapter" data-level="10.4.2" data-path="pecan-remote.html"><a href="pecan-remote.html#configuration-for-pecan-web-interface"><i class="fa fa-check"></i><b>10.4.2</b> Configuration for PEcAn web interface</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#running-pecan-code-for-remotely"><i class="fa fa-check"></i><b>10.5</b> Running PEcAn code for remotely</a><ul>
-<li class="chapter" data-level="10.5.1" data-path="remote-execution-with-pecan.html"><a href="remote-execution-with-pecan.html#geo.bu.edu"><i class="fa fa-check"></i><b>10.5.1</b> geo.bu.edu</a></li>
+<li class="chapter" data-level="10.5" data-path="pecan-remote.html"><a href="pecan-remote.html#running-pecan-code-for-remotely"><i class="fa fa-check"></i><b>10.5</b> Running PEcAn code for remotely</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="pecan-remote.html"><a href="pecan-remote.html#geo.bu.edu"><i class="fa fa-check"></i><b>10.5.1</b> geo.bu.edu</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Advanced user guide</b></span></li>
@@ -281,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.4" data-path="pecan-workflow-webworkflow-r.html"><a href="pecan-workflow-webworkflow-r.html#traits"><i class="fa fa-check"></i><b>12.4</b> Traits</a></li>
 <li class="chapter" data-level="12.5" data-path="pecan-workflow-webworkflow-r.html"><a href="pecan-workflow-webworkflow-r.html#meta-analysis"><i class="fa fa-check"></i><b>12.5</b> Meta Analysis</a></li>
-<li class="chapter" data-level="12.6" data-path="pecan-workflow-webworkflow-r.html"><a href="pecan-workflow-webworkflow-r.html#model-configuration-1"><i class="fa fa-check"></i><b>12.6</b> Model Configuration</a></li>
+<li class="chapter" data-level="12.6" data-path="pecan-workflow-webworkflow-r.html"><a href="pecan-workflow-webworkflow-r.html#model-configuration"><i class="fa fa-check"></i><b>12.6</b> Model Configuration</a></li>
 <li class="chapter" data-level="12.7" data-path="pecan-workflow-webworkflow-r.html"><a href="pecan-workflow-webworkflow-r.html#run-execution"><i class="fa fa-check"></i><b>12.7</b> Run Execution</a></li>
 <li class="chapter" data-level="12.8" data-path="pecan-workflow-webworkflow-r.html"><a href="pecan-workflow-webworkflow-r.html#post-run-analysis"><i class="fa fa-check"></i><b>12.8</b> Post Run Analysis</a></li>
 <li class="chapter" data-level="12.9" data-path="pecan-workflow-webworkflow-r.html"><a href="pecan-workflow-webworkflow-r.html#advanced-analysis"><i class="fa fa-check"></i><b>12.9</b> Advanced Analysis</a></li>
@@ -351,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23" data-path="introduction-developer-guide.html"><a href="introduction-developer-guide.html"><i class="fa fa-check"></i><b>23</b> Introduction: Developer Guide</a></li>
 <li class="chapter" data-level="24" data-path="pecan-setup.html"><a href="pecan-setup.html"><i class="fa fa-check"></i><b>24</b> PEcAn Setup</a><ul>
 <li class="chapter" data-level="24.1" data-path="pecan-setup.html"><a href="pecan-setup.html#installing-the-pecan-vm"><i class="fa fa-check"></i><b>24.1</b> Installing the PEcAn VM</a></li>
-<li class="chapter" data-level="24.2" data-path="pecan-setup.html"><a href="pecan-setup.html#install-pecan-by-hand"><i class="fa fa-check"></i><b>24.2</b> Install PEcAn by hand</a><ul>
+<li class="chapter" data-level="24.2" data-path="pecan-setup.html"><a href="pecan-setup.html#pecan-manual-setup"><i class="fa fa-check"></i><b>24.2</b> Install PEcAn by hand</a><ul>
 <li class="chapter" data-level="24.2.1" data-path="pecan-setup.html"><a href="pecan-setup.html#installation-prerequisites"><i class="fa fa-check"></i><b>24.2.1</b> Installation Prerequisites</a></li>
 <li class="chapter" data-level="24.2.2" data-path="pecan-setup.html"><a href="pecan-setup.html#os-specific-installations"><i class="fa fa-check"></i><b>24.2.2</b> OS Specific Installations</a></li>
 <li class="chapter" data-level="24.2.3" data-path="pecan-setup.html"><a href="pecan-setup.html#installing-bety"><i class="fa fa-check"></i><b>24.2.3</b> Installing BETY</a></li>
@@ -494,9 +492,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="32.10" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#fluxnetlathuile"><i class="fa fa-check"></i><b>32.10</b> FluxnetLaThuile</a></li>
 <li class="chapter" data-level="32.11" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#geostreams"><i class="fa fa-check"></i><b>32.11</b> Geostreams</a></li>
 </ul></li>
-<li class="chapter" data-level="33" data-path="what-is-docker.html"><a href="what-is-docker.html"><i class="fa fa-check"></i><b>33</b> What is Docker?</a><ul>
-<li class="chapter" data-level="33.1" data-path="what-is-docker.html"><a href="what-is-docker.html#working-with-docker"><i class="fa fa-check"></i><b>33.1</b> Working with Docker</a></li>
-<li class="chapter" data-level="33.2" data-path="what-is-docker.html"><a href="what-is-docker.html#working-with-docker-compose"><i class="fa fa-check"></i><b>33.2</b> Working with docker-compose</a></li>
+<li class="chapter" data-level="33" data-path="docker-intro.html"><a href="docker-intro.html"><i class="fa fa-check"></i><b>33</b> What is Docker?</a><ul>
+<li class="chapter" data-level="33.1" data-path="docker-intro.html"><a href="docker-intro.html#working-with-docker"><i class="fa fa-check"></i><b>33.1</b> Working with Docker</a></li>
+<li class="chapter" data-level="33.2" data-path="docker-intro.html"><a href="docker-intro.html#working-with-docker-compose"><i class="fa fa-check"></i><b>33.2</b> Working with docker-compose</a></li>
 </ul></li>
 <li class="chapter" data-level="34" data-path="pecan-docker-architecture.html"><a href="pecan-docker-architecture.html"><i class="fa fa-check"></i><b>34</b> PEcAn Docker Architecture</a></li>
 <li class="chapter" data-level="35" data-path="docker-quickstart.html"><a href="docker-quickstart.html"><i class="fa fa-check"></i><b>35</b> Quickstart for Docker and PEcAn</a><ul>
@@ -658,7 +656,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="what-is-docker.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="docker-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="docker-quickstart.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
