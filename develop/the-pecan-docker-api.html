@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="reference-runs.html">
-<link rel="next" href="working-with-the-vm.html">
+<link rel="prev" href="pecan-remote.html">
+<link rel="next" href="introduction-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -670,304 +670,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pecan-data-ingest-via-web-interface" class="section level1">
-<h1><span class="header-section-number">20</span> Pecan Data Ingest via Web Interface</h1>
-<p>This tutorial explains the process of ingesting data into PEcAn via our Data-Ingest Application. In order to ingest data, the users must first select data that they wish to upload. Then, they enter metadata to help PEcAn parse and load the data into the main PEcAn workflow.</p>
-<div id="loading-data" class="section level2">
-<h2><span class="header-section-number">20.1</span> Loading Data</h2>
-<div id="selecting-ingest-method" class="section level3">
-<h3><span class="header-section-number">20.1.1</span> Selecting Ingest Method</h3>
-<p>The Data-Ingest application is capable of loading data from the DataONE data federation and from the user’s local machine. The first step in the workflow is therefore to select an upload method. The application defaults to uploading from DataONE. To upload data from a local device, simply select the radio button titled <code>Local Files</code>.</p>
+<div id="the-pecan-docker-api" class="section level1">
+<h1><span class="header-section-number">11</span> The PEcAn Docker API</h1>
+<p>If you have a running instance of Dockerized PEcAn (or other setup where PEcAn workflows are submitted via <a href="rabbitmq.html#rabbitmq">RabbitMQ</a>),
+you have the option of running and managing PEcAn workflows using the <code>pecanapi</code> package.</p>
+<p>For more details, see the <code>pecanapi</code> <a href="pecanapi-vignette.html#pecanapi-vignette">package vignette</a> and function-level documentation.
+What follows is a lightning introduction.</p>
+<div id="installation" class="section level2">
+<h2><span class="header-section-number">11.1</span> Installation</h2>
+<p>The package can be installed directly from GitHub via <code>devtools::install_github</code>:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;pecanproject/pecan/api@develop&quot;</span>)</a></code></pre></div>
 </div>
-<div id="dataone-upload-example" class="section level3">
-<h3><span class="header-section-number">20.1.2</span> DataONE Upload Example</h3>
-<p><br></p>
-<p><img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/D1Ingest-1.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-<br>
-The DataONE download feature allows the user to download data at a given doi or DataONE specific package id. To do so, enter the doi or identifier in the <code>Import From DataONE</code> field and select <code>download</code>. The download process may take a couple of minutes to run depending on the number of files in the dataONE package. This may be a convenient option if the user does not wish to download files directly to their local machine. Once the files have been successfully downloaded from DataONE, they are displayed in a table. Before proceeding to the next step, the user can select a file to ingest by clicking on the corresponding row in the data table.
-<br></p>
-</div>
-</div>
-<div id="local-upload-example" class="section level2">
-<h2><span class="header-section-number">20.2</span> Local Upload Example</h2>
-<p><br>
-To upload local files, the user should first select the <code>Local Files</code> button. From there, the user can upload files from their local machines by selecting <code>Browse</code> or by dragging and dropping files into the text box. The files will begin uploading automatically. From there, the user should select a file to ingest and then select the <code>Next Step</code> button.
-<br>
-After this step, the workflow is identical for both methods. However, please note that if it becomes necessary to switch from loading data via <code>DataONE</code> to uploading local files after the first step, please restart the application.
-<br></p>
-<p><img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/Local_loader_sm.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-<br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/local_browse.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-## 2. Creating an Input Record
-Creating an input record requires some basic metadata about the file that is being ingested. Each entry field is briefly explained below.
-<br></p>
-<ul>
-<li>Site: To link the selected file with a site, the user can scroll or type to search all the sites in PEcAn. See Example:
-<br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/Selectize_Input_sm.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-<br></li>
-<li><p>Parent: To link the selected file with another dataset, type to search existing datasets in the <code>Parent</code> field.</p></li>
-<li><p>Name: this field should be autofilled by selecting a file in step 1.</p></li>
-<li><p>Format: If the selected file has an existing format name, the user can search and select in the <code>Format</code> field. If the selected file’s format is not already in pecan, the user can create a new format by selecting <code>Create New Format</code>. Once this new format is created, it will automatically populate the <code>Format</code> box and the <code>Current Mimetype</code> box (See Section 3).</p></li>
-<li><p>Mimetype: If the format already exists, select an existing mimetype.</p></li>
-<li><p>Start and End Date and Time: Inputs can be entered manually or by using the user interface. See example</p></li>
-</ul>
-<p><br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/DateTime.gif" width="50%" height="50%" style="display: block; margin: auto;" /></p>
-<ul>
-<li>Notes: Describe the data that is being uploaded. Please include any citations or references.</li>
-</ul>
-</div>
-<div id="creating-a-format-record" class="section level2">
-<h2><span class="header-section-number">20.3</span> 3. Creating a format record</h2>
-<p>If it is necessary to add a new format to PEcAn, the user should fill out the form attached to the <code>Create New Format</code> button. The inputs to this form are described below:</p>
-<ul>
-<li><p>Mimetype: type to search existing mimetypes. If the mimetype is not in that list, please click on the link <code>Create New Mimetype</code> and create a new mimetype via the BETY website.</p></li>
-<li><p>New Format Name: Add the name of the new format. Please exclude spaces from the name. Instead please use underscores &quot;_&quot;.</p></li>
-<li><p>Header: If there is space before the first line of data in the dataset, please select <code>Yes</code></p></li>
-<li><p>Skip: The number of lines in the header that should be skipped before the data.</p></li>
-<li><p>Please enter notes that describe the format.</p></li>
-</ul>
-<p>Example:
-<br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/new_format_record.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-## 4. Formats_Variables Record
-The final step in the ingest process is to register a formats-variables record. This record links pecan variables with variables from the selected data.</p>
-<ul>
-<li><p>Variable: PEcAn variable that is equivalent to variable in selected file.</p></li>
-<li><p>Name: The variable name in the imported data need only be specified if it differs from the BETY variable name.</p></li>
-<li><p>Unit: Should be in a format parseable by the udunits library and need only be secified if the units of the data in the file differ from the BETY standard.</p></li>
-<li><p>Storage Type: Storage type need only be specified if the variable is stored in a format other than would be expected (e.g. if numeric values are stored as quoted character strings). Additionally, storage_type stores POSIX codes that are used to store any time variables (e.g. a column with a 4-digit year would be <code>%Y</code>).</p></li>
-<li><p>Column Number: Vector of integers that list the column numbers associated with variables in a dataset. Required for text files that lack headers.
-<br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/D1Ingest-9_sm.gif" width="50%" height="50%" style="display: block; margin: auto;" /></p></li>
-</ul>
-<p>Finally, the path to the ingest data is displayed in the <code>Select Files</code> box.</p>
-
-</div>
-<div id="editing-records" class="section level2">
-<h2><span class="header-section-number">20.4</span> Editing records</h2>
-<ul>
-<li>Models</li>
-<li>Species</li>
-<li>PFTs</li>
-<li>Traits</li>
-<li>Inputs</li>
-<li>DB files</li>
-<li>Variables</li>
-<li>Formats</li>
-<li>(Link each section to relevant Bety tables)</li>
-</ul>
-
-</div>
-<div id="standalone-tools-modules" class="section level2">
-<h2><span class="header-section-number">20.5</span> Standalone tools (modules)</h2>
-<ul>
-<li>RTM</li>
-<li>Photosynthesis</li>
-<li>Allometry</li>
-<li><code>benchmark::load_data</code></li>
-</ul>
-<p>(Link to vignettes)</p>
-
-</div>
-<div id="LoadData" class="section level2">
-<h2><span class="header-section-number">20.6</span> Loading Data in PEcAn</h2>
-<p>If you are loading data in to PEcAn for benchmarking, using the Benchmarking shiny app [provide link?] is recommended.</p>
-<p>Data can be loaded manually using the <code>load_data</code> function which in turn requires providing data format information using <code>query.format.vars</code> and the path to the data using <code>query.file.path</code>.</p>
-<p>Below is a description of the <code>load_data</code> function an a simple example of loading data manually.</p>
-<div id="function-load_data" class="section level3">
-<h3><span class="header-section-number">20.6.1</span> Function <code>load_data</code></h3>
-<div id="inputs-2" class="section level4">
-<h4><span class="header-section-number">20.6.1.1</span> Inputs</h4>
-<p>Required</p>
-<ul>
-<li><code>data.path</code>: path to the data that is the output of the function <code>query.file.path</code> (see example below)</li>
-<li><code>format</code>: R list object that is the output of the function <code>query.format.vars</code> (see example below)</li>
-</ul>
-<p>Optional</p>
-<ul>
-<li><code>start_year = NA</code>:</li>
-<li><code>end_year = NA</code>:</li>
-<li><code>site = NA</code></li>
-<li><code>vars.used.index=NULL</code></li>
-</ul>
-</div>
-<div id="output-1" class="section level4">
-<h4><span class="header-section-number">20.6.1.2</span> Output</h4>
-<ul>
-<li>R data frame containing the requested variables converted in to PEcAn standard name and units and time steps in <code>POSIX</code> format.</li>
-</ul>
-</div>
-</div>
-<div id="example" class="section level3">
-<h3><span class="header-section-number">20.6.2</span> Example</h3>
-<p>The data for this example has already been entered in to the database. To add new data go to <a href="creating-a-new-format-record-in-bety.html#NewInput">new data documentation</a>.</p>
-<p>To load the Ameriflux data for the Harvard Forest (US-Ha1) site.</p>
-<ol style="list-style-type: decimal">
-<li>Create a connection to the BETY database. This can be done using R function</li>
-</ol>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">bety =<span class="st"> </span>PEcAn.DB<span class="op">::</span><span class="kw">betyConnect</span>(<span class="dt">php.config =</span> <span class="st">&quot;pecan/web/config.php&quot;</span>)</a></code></pre></div>
-<p>where the complete path to the <code>config.php</code> is specified. See <a href="https://github.com/PecanProject/pecan/blob/master/web/config.example.php">here</a> for an example <code>config.php</code> file.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Look up the inputs record for the data in BETY.</li>
-</ol>
-<p><img src="04_advanced_user_guide/03_standalone_tools/images/Input_ID_name.png" width="50%" height="50%" style="display: block; margin: auto;" /></p>
-<p>To find the input ID, either look at</p>
-<ul>
-<li><p>The url of the record (see image above)</p></li>
-<li><p>In R run</p></li>
-</ul>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb92-2" data-line-number="2">input_name =<span class="st"> &quot;AmerifluxLBL_site_0-758&quot;</span> <span class="co">#copied directly from online</span></a>
-<a class="sourceLine" id="cb92-3" data-line-number="3">input.id =<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;inputs&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>input_name) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)</a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Additional arguments to <code>query.format.vars</code> are optional</p>
-<ol style="list-style-type: decimal">
-<li>If you only want to load a subset of dates in the data, specify start and end year, otherwise all data will be loaded.</li>
-<li>If you only want to load a select list of variables from the data, look up their IDs in BETY, otherwise all variables will be loaded.</li>
-</ol></li>
-<li><p>In R run</p></li>
-</ol>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">   format =<span class="st"> </span>PEcAn.DB<span class="op">::</span><span class="kw">query.format.vars</span>(bety, input.id)</a></code></pre></div>
-<p>Examine the resulting R list object to make sure it returned the correct information.</p>
-<p>The example format contains the following objects:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">   <span class="op">$</span>file_name</a>
-<a class="sourceLine" id="cb94-2" data-line-number="2">   [<span class="dv">1</span>] <span class="st">&quot;AMERIFLUX_BASE_HH&quot;</span></a>
-<a class="sourceLine" id="cb94-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb94-4" data-line-number="4">   <span class="op">$</span>mimetype</a>
-<a class="sourceLine" id="cb94-5" data-line-number="5">   [<span class="dv">1</span>] <span class="st">&quot;csv&quot;</span></a>
-<a class="sourceLine" id="cb94-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb94-7" data-line-number="7">   <span class="op">$</span>skip</a>
-<a class="sourceLine" id="cb94-8" data-line-number="8">   [<span class="dv">1</span>] <span class="dv">2</span></a>
-<a class="sourceLine" id="cb94-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb94-10" data-line-number="10">   <span class="op">$</span>header</a>
-<a class="sourceLine" id="cb94-11" data-line-number="11">   [<span class="dv">1</span>] <span class="dv">1</span></a>
-<a class="sourceLine" id="cb94-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb94-13" data-line-number="13">   <span class="op">$</span>na.strings</a>
-<a class="sourceLine" id="cb94-14" data-line-number="14">   [<span class="dv">1</span>] <span class="st">&quot;-9999&quot;</span> <span class="st">&quot;-6999&quot;</span> <span class="st">&quot;9999&quot;</span>  <span class="st">&quot;NA&quot;</span>   </a>
-<a class="sourceLine" id="cb94-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb94-16" data-line-number="16">   <span class="op">$</span>time.row</a>
-<a class="sourceLine" id="cb94-17" data-line-number="17">   [<span class="dv">1</span>] <span class="dv">4</span></a>
-<a class="sourceLine" id="cb94-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb94-19" data-line-number="19">   <span class="op">$</span>site</a>
-<a class="sourceLine" id="cb94-20" data-line-number="20">   [<span class="dv">1</span>] <span class="dv">758</span></a>
-<a class="sourceLine" id="cb94-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb94-22" data-line-number="22">   <span class="op">$</span>lat</a>
-<a class="sourceLine" id="cb94-23" data-line-number="23">   [<span class="dv">1</span>] <span class="fl">42.5378</span></a>
-<a class="sourceLine" id="cb94-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb94-25" data-line-number="25">   <span class="op">$</span>lon</a>
-<a class="sourceLine" id="cb94-26" data-line-number="26">   [<span class="dv">1</span>] <span class="fl">-72.1715</span></a>
-<a class="sourceLine" id="cb94-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb94-28" data-line-number="28">   <span class="op">$</span>time_zone</a>
-<a class="sourceLine" id="cb94-29" data-line-number="29">   [<span class="dv">1</span>] <span class="st">&quot;America/New_York&quot;</span></a></code></pre></div>
-<p>The first 4 rows of the table <code>format$vars</code> looks like this:</p>
-<table style="width:100%;">
-<colgroup>
-<col width="9%" />
-<col width="8%" />
-<col width="11%" />
-<col width="8%" />
-<col width="9%" />
-<col width="9%" />
-<col width="7%" />
-<col width="8%" />
-<col width="10%" />
-<col width="7%" />
-<col width="10%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>bety_name</th>
-<th>variable_id</th>
-<th>input_name</th>
-<th>input_units</th>
-<th>storage_type</th>
-<th>column_number</th>
-<th>bety_units</th>
-<th>mstmip_name</th>
-<th>mstmip_units</th>
-<th>pecan_name</th>
-<th>pecan_units</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>air_pressure</td>
-<td>554</td>
-<td>PA</td>
-<td>kPa</td>
-<td></td>
-<td>19</td>
-<td>Pa</td>
-<td>Psurf</td>
-<td>Pa</td>
-<td>Psurf</td>
-<td>Pa</td>
-</tr>
-<tr class="even">
-<td>airT</td>
-<td>86</td>
-<td>TA</td>
-<td>celsius</td>
-<td></td>
-<td>4</td>
-<td>degrees C</td>
-<td>Tair</td>
-<td>K</td>
-<td>Tair</td>
-<td>K</td>
-</tr>
-<tr class="odd">
-<td>co2atm</td>
-<td>135</td>
-<td>CO2_1</td>
-<td>umol mol-1</td>
-<td></td>
-<td>20</td>
-<td>umol mol-1</td>
-<td>CO2air</td>
-<td>micromol mol-1</td>
-<td>CO2air</td>
-<td>micromol mol-1</td>
-</tr>
-<tr class="even">
-<td>datetime</td>
-<td>5000000001</td>
-<td>TIMESTAMP_START</td>
-<td>ymd_hms</td>
-<td>%Y%m%d%H%M</td>
-<td>1</td>
-<td>ymd_hms</td>
-<td>NA</td>
-<td>NA</td>
-<td>datetime</td>
-<td>ymd_hms</td>
-</tr>
-</tbody>
-</table>
-<ol start="5" style="list-style-type: decimal">
-<li>Get the path to the data</li>
-</ol>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">   data.path =<span class="st"> </span>PEcAn.DB<span class="op">::</span><span class="kw">query.file.path</span>(</a>
-<a class="sourceLine" id="cb95-2" data-line-number="2">     <span class="dt">input.id =</span> input.id, </a>
-<a class="sourceLine" id="cb95-3" data-line-number="3">     <span class="dt">host_name =</span> PEcAn.remote<span class="op">::</span><span class="kw">fqdn</span>(), </a>
-<a class="sourceLine" id="cb95-4" data-line-number="4">     <span class="dt">con =</span> bety<span class="op">$</span>con)</a></code></pre></div>
-<ol start="6" style="list-style-type: decimal">
-<li>Load the data</li>
-</ol>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">   data =<span class="st"> </span>PEcAn.benchmark<span class="op">::</span><span class="kw">load_data</span>(<span class="dt">data.path =</span> data.path, <span class="dt">format =</span> format)</a></code></pre></div>
+<div id="creating-and-submitting-a-workflow" class="section level2">
+<h2><span class="header-section-number">11.2</span> Creating and submitting a workflow</h2>
+<p>With <code>pecanapi</code>, creating a workflow, submitting it to RabbitMQ, monitoring its progress, and processing its output can all be accomplished via an R script.</p>
+<p>Start by loading the package (and the <code>magrittr</code> package, for the <code>%&gt;%</code> pipe operator).</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">library</span>(pecanapi)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="kw">library</span>(magrittr)</a></code></pre></div>
+<p>Set your PEcAn database user ID, and create a database connection object, which will be used for database operations throughout the workflow.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">pecanapi.user_id =</span> <span class="dv">99000000002</span>)</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">con &lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbConnect</span>(</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">  RPostgres<span class="op">::</span><span class="kw">Postgres</span>(),</a>
+<a class="sourceLine" id="cb61-4" data-line-number="4">  <span class="dt">user =</span> <span class="st">&quot;bety&quot;</span>,</a>
+<a class="sourceLine" id="cb61-5" data-line-number="5">  <span class="dt">password =</span> <span class="st">&quot;bety&quot;</span>,</a>
+<a class="sourceLine" id="cb61-6" data-line-number="6">  <span class="dt">host =</span> <span class="st">&quot;localhost&quot;</span>,</a>
+<a class="sourceLine" id="cb61-7" data-line-number="7">  <span class="dt">port =</span> <span class="dv">5432</span></a>
+<a class="sourceLine" id="cb61-8" data-line-number="8">)</a></code></pre></div>
+<p>Find model and site IDs for the site and model you want to run.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">model_id &lt;-<span class="st"> </span><span class="kw">get_model_id</span>(con, <span class="st">&quot;SIPNET&quot;</span>, <span class="st">&quot;136&quot;</span>)</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">all_umbs &lt;-<span class="st"> </span><span class="kw">search_sites</span>(con, <span class="st">&quot;umbs%disturbance&quot;</span>)</a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">site_id &lt;-<span class="st"> </span><span class="kw">subset</span>(all_umbs, <span class="op">!</span><span class="kw">is.na</span>(mat))[[<span class="st">&quot;id&quot;</span>]]</a></code></pre></div>
+<p>Insert a new workflow into the PEcAn database, and extract its ID.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">workflow &lt;-<span class="st"> </span><span class="kw">insert_new_workflow</span>(con, site_id, model_id,</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">                                <span class="dt">start_date =</span> <span class="st">&quot;2004-01-01&quot;</span>,</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">                                <span class="dt">end_date =</span> <span class="st">&quot;2004-12-31&quot;</span>)</a>
+<a class="sourceLine" id="cb63-4" data-line-number="4">workflow_id &lt;-<span class="st"> </span>workflow[[<span class="st">&quot;id&quot;</span>]]</a></code></pre></div>
+<p>Pull all of this information together into a settings list object.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">list</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">add_workflow</span>(workflow) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">  </span><span class="kw">add_database</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="st">  </span><span class="kw">add_pft</span>(<span class="st">&quot;temperate.deciduous&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-5" data-line-number="5"><span class="st">  </span><span class="kw">add_rabbitmq</span>(<span class="dt">con =</span> con) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="st">  </span><span class="kw">modifyList</span>(<span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb64-7" data-line-number="7">    <span class="dt">meta.analysis =</span> <span class="kw">list</span>(<span class="dt">iter =</span> <span class="dv">3000</span>, <span class="dt">random.effects =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb64-8" data-line-number="8">    <span class="dt">run =</span> <span class="kw">list</span>(<span class="dt">inputs =</span> <span class="kw">list</span>(<span class="dt">met =</span> <span class="kw">list</span>(<span class="dt">source =</span> <span class="st">&quot;CRUNCEP&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;SIPNET&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;ncss&quot;</span>))),</a>
+<a class="sourceLine" id="cb64-9" data-line-number="9">    <span class="dt">ensemble =</span> <span class="kw">list</span>(<span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">variable =</span> <span class="st">&quot;NPP&quot;</span>)</a>
+<a class="sourceLine" id="cb64-10" data-line-number="10">  ))</a></code></pre></div>
+<p>Submit the workflow via RabbitMQ, and monitor its progress in the R process.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">submit_workflow</span>(settings)</a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="kw">watch_workflow</span>(workflow_id)</a></code></pre></div>
+<p>Use THREDDS to access and analyze the output.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">sipnet_out &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="kw">run_dap</span>(workflow_id, <span class="st">&quot;2004.nc&quot;</span>))</a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">gpp &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(sipnet_out, <span class="st">&quot;GPP&quot;</span>)</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3">time &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(sipnet_out, <span class="st">&quot;time&quot;</span>)</a>
+<a class="sourceLine" id="cb66-4" data-line-number="4">ncdf4<span class="op">::</span><span class="kw">nc_close</span>(sipnet_out)</a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="kw">plot</span>(time, gpp, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>
-</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="reference-runs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="working-with-the-vm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pecan-remote.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

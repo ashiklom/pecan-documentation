@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="reference-runs.html">
-<link rel="next" href="working-with-the-vm.html">
+<link rel="prev" href="data-assimilation-concepts.html">
+<link rel="next" href="faq.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -670,304 +670,220 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pecan-data-ingest-via-web-interface" class="section level1">
-<h1><span class="header-section-number">20</span> Pecan Data Ingest via Web Interface</h1>
-<p>This tutorial explains the process of ingesting data into PEcAn via our Data-Ingest Application. In order to ingest data, the users must first select data that they wish to upload. Then, they enter metadata to help PEcAn parse and load the data into the main PEcAn workflow.</p>
-<div id="loading-data" class="section level2">
-<h2><span class="header-section-number">20.1</span> Loading Data</h2>
-<div id="selecting-ingest-method" class="section level3">
-<h3><span class="header-section-number">20.1.1</span> Selecting Ingest Method</h3>
-<p>The Data-Ingest application is capable of loading data from the DataONE data federation and from the user’s local machine. The first step in the workflow is therefore to select an upload method. The application defaults to uploading from DataONE. To upload data from a local device, simply select the radio button titled <code>Local Files</code>.</p>
-</div>
-<div id="dataone-upload-example" class="section level3">
-<h3><span class="header-section-number">20.1.2</span> DataONE Upload Example</h3>
-<p><br></p>
-<p><img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/D1Ingest-1.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-<br>
-The DataONE download feature allows the user to download data at a given doi or DataONE specific package id. To do so, enter the doi or identifier in the <code>Import From DataONE</code> field and select <code>download</code>. The download process may take a couple of minutes to run depending on the number of files in the dataONE package. This may be a convenient option if the user does not wish to download files directly to their local machine. Once the files have been successfully downloaded from DataONE, they are displayed in a table. Before proceeding to the next step, the user can select a file to ingest by clicking on the corresponding row in the data table.
-<br></p>
-</div>
-</div>
-<div id="local-upload-example" class="section level2">
-<h2><span class="header-section-number">20.2</span> Local Upload Example</h2>
-<p><br>
-To upload local files, the user should first select the <code>Local Files</code> button. From there, the user can upload files from their local machines by selecting <code>Browse</code> or by dragging and dropping files into the text box. The files will begin uploading automatically. From there, the user should select a file to ingest and then select the <code>Next Step</code> button.
-<br>
-After this step, the workflow is identical for both methods. However, please note that if it becomes necessary to switch from loading data via <code>DataONE</code> to uploading local files after the first step, please restart the application.
-<br></p>
-<p><img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/Local_loader_sm.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-<br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/local_browse.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-## 2. Creating an Input Record
-Creating an input record requires some basic metadata about the file that is being ingested. Each entry field is briefly explained below.
-<br></p>
+<div id="pecanapi-vignette" class="section level1">
+<h1><span class="header-section-number">45</span> Introduction to the PEcAn R API</h1>
+<div id="introduction-4" class="section level2">
+<h2><span class="header-section-number">45.1</span> Introduction</h2>
+<p>The PEcAn API package (<code>pecanapi</code>) is designed to allow users to submit PEcAn workflows directly from an R session.
+The basic idea is that users build the PEcAn settings object via an R script (manually, or using the included helper functions) and then use the RabbitMQ API to send this object to a Dockerized PEcAn instance running on a local or remote machine.</p>
+<p><code>pecanapi</code> is specifically designed to only depend on CRAN packages, and not on any PEcAn internal packages.
+This makes it easy to install, and allows it to be used without needing to download and install PEcAn itself (which is large and has many complex R package and system dependencies).
+It can be installed directly from GitHub as follows:</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">## devtools::install_github(&quot;pecanproject/pecan&quot;, subdir = &quot;api&quot;)</a>
+<a class="sourceLine" id="cb335-2" data-line-number="2"><span class="kw">library</span>(pecanapi)</a></code></pre></div>
+<pre><code>## Error in library(pecanapi): there is no package called &#39;pecanapi&#39;</code></pre>
+<p>This vignette covers the following major sections:</p>
 <ul>
-<li>Site: To link the selected file with a site, the user can scroll or type to search all the sites in PEcAn. See Example:
-<br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/Selectize_Input_sm.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-<br></li>
-<li><p>Parent: To link the selected file with another dataset, type to search existing datasets in the <code>Parent</code> field.</p></li>
-<li><p>Name: this field should be autofilled by selecting a file in step 1.</p></li>
-<li><p>Format: If the selected file has an existing format name, the user can search and select in the <code>Format</code> field. If the selected file’s format is not already in pecan, the user can create a new format by selecting <code>Create New Format</code>. Once this new format is created, it will automatically populate the <code>Format</code> box and the <code>Current Mimetype</code> box (See Section 3).</p></li>
-<li><p>Mimetype: If the format already exists, select an existing mimetype.</p></li>
-<li><p>Start and End Date and Time: Inputs can be entered manually or by using the user interface. See example</p></li>
-</ul>
-<p><br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/DateTime.gif" width="50%" height="50%" style="display: block; margin: auto;" /></p>
-<ul>
-<li>Notes: Describe the data that is being uploaded. Please include any citations or references.</li>
+<li><a href="pecanapi-vignette.html#pecanapi-setup">Initial setup</a> goes over the configuration, both inside and outside R, required to make <code>pecanapi</code> work.</li>
+<li><a href="pecanapi-vignette.html#pecanapi-workflow">Registering a workflow</a> goes over how to register a PEcAn workflow with the PEcAn database, including searching for the required site and model IDs</li>
+<li><a href="pecanapi-vignette.html#pecanapi-settings">Building a settings object</a> covers how to configure a PEcAn workflow using the PEcAn settings list.</li>
+<li>Finally, <a href="pecanapi-vignette.html#pecanapi-submit">submitting a run</a> covers how to submit the complete settings object for execution.</li>
 </ul>
 </div>
-<div id="creating-a-format-record" class="section level2">
-<h2><span class="header-section-number">20.3</span> 3. Creating a format record</h2>
-<p>If it is necessary to add a new format to PEcAn, the user should fill out the form attached to the <code>Create New Format</code> button. The inputs to this form are described below:</p>
-<ul>
-<li><p>Mimetype: type to search existing mimetypes. If the mimetype is not in that list, please click on the link <code>Create New Mimetype</code> and create a new mimetype via the BETY website.</p></li>
-<li><p>New Format Name: Add the name of the new format. Please exclude spaces from the name. Instead please use underscores &quot;_&quot;.</p></li>
-<li><p>Header: If there is space before the first line of data in the dataset, please select <code>Yes</code></p></li>
-<li><p>Skip: The number of lines in the header that should be skipped before the data.</p></li>
-<li><p>Please enter notes that describe the format.</p></li>
-</ul>
-<p>Example:
-<br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/new_format_record.gif" width="50%" height="50%" style="display: block; margin: auto;" />
-## 4. Formats_Variables Record
-The final step in the ingest process is to register a formats-variables record. This record links pecan variables with variables from the selected data.</p>
-<ul>
-<li><p>Variable: PEcAn variable that is equivalent to variable in selected file.</p></li>
-<li><p>Name: The variable name in the imported data need only be specified if it differs from the BETY variable name.</p></li>
-<li><p>Unit: Should be in a format parseable by the udunits library and need only be secified if the units of the data in the file differ from the BETY standard.</p></li>
-<li><p>Storage Type: Storage type need only be specified if the variable is stored in a format other than would be expected (e.g. if numeric values are stored as quoted character strings). Additionally, storage_type stores POSIX codes that are used to store any time variables (e.g. a column with a 4-digit year would be <code>%Y</code>).</p></li>
-<li><p>Column Number: Vector of integers that list the column numbers associated with variables in a dataset. Required for text files that lack headers.
-<br>
-<img src="04_advanced_user_guide/02_adding_to_pecan/01_case_studies/images/data-ingest/D1Ingest-9_sm.gif" width="50%" height="50%" style="display: block; margin: auto;" /></p></li>
-</ul>
-<p>Finally, the path to the ingest data is displayed in the <code>Select Files</code> box.</p>
-
+<div id="pecanapi-setup" class="section level2">
+<h2><span class="header-section-number">45.2</span> Initial setup</h2>
+<p>This tutorial assumes you are running a Dockerized instance of PEcAn on your local machine (hostname <code>localhost</code>, port 8000).
+To check this, open a browser and try to access <code>http://localhost:8000/pecan/</code>.
+If you are trying to access a remote instance of PEcAn, you will need to substitute the hostname and port accordingly.</p>
+<p>To perform database operations, you will also need to have read access to the PEcAn database.
+Note that the PEcAn database Docker container (<code>postgres</code>) does not provide this by default, so you will need to open port 5432 (the PostgreSQL default) to that container.
+You can do this by creating a <code>docker-compose.override.yml</code> file with the following contents in the root directory of the PEcAn source code:</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb337-1" data-line-number="1"><span class="fu">version:</span><span class="at"> </span><span class="st">&quot;3&quot;</span></a>
+<a class="sourceLine" id="cb337-2" data-line-number="2"><span class="fu">services:</span></a>
+<a class="sourceLine" id="cb337-3" data-line-number="3">  <span class="fu">postgres:</span></a>
+<a class="sourceLine" id="cb337-4" data-line-number="4">    <span class="fu">ports:</span></a>
+<a class="sourceLine" id="cb337-5" data-line-number="5">      <span class="kw">-</span> <span class="fu">5432:</span><span class="at">5432</span></a></code></pre></div>
+<p>Here, the first port is the one used to access the database (can be any open port; most PostgreSQL applications assume 5432 by default), and the second is the port the database is actually running on (which will always be 5432).
+After making this change, reload the <code>postgres</code> container by running <code>docker-compose up -d</code>.
+To check that this works, open an R session and try to create a database connection object to the PEcAn database.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1">con &lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbConnect</span>(</a>
+<a class="sourceLine" id="cb338-2" data-line-number="2">  RPostgres<span class="op">::</span><span class="kw">Postgres</span>(),</a>
+<a class="sourceLine" id="cb338-3" data-line-number="3">  <span class="dt">user =</span> <span class="st">&quot;bety&quot;</span>,</a>
+<a class="sourceLine" id="cb338-4" data-line-number="4">  <span class="dt">password =</span> <span class="st">&quot;bety&quot;</span>,</a>
+<a class="sourceLine" id="cb338-5" data-line-number="5">  <span class="dt">host =</span> <span class="st">&quot;localhost&quot;</span>,</a>
+<a class="sourceLine" id="cb338-6" data-line-number="6">  <span class="dt">port =</span> <span class="dv">5432</span></a>
+<a class="sourceLine" id="cb338-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb338-8" data-line-number="8">DBI<span class="op">::</span><span class="kw">dbListTables</span>(con)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<p>This code should print out five table names from the PEcAn database.
+If it throws an error, you have a problem with your database connection.</p>
+<p>The rest of this tutorial assumes that you are using this same database connection object (<code>con</code>).</p>
+<p>In addition, any API operations that modify the database will not work unless a user ID is set.
+To avoid having to manually specify the ID each time, we can set it via <code>options</code>:</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">pecanapi.user_id =</span> <span class="dv">99000000002</span>)</a></code></pre></div>
+<p>The <code>pecanapi</code> package has many other options that it uses for its default configuration, including the Docker server and RabbitMQ hostname and credentials.
+To learn more about them, see <code>?pecanapi_options</code>.</p>
 </div>
-<div id="editing-records" class="section level2">
-<h2><span class="header-section-number">20.4</span> Editing records</h2>
-<ul>
-<li>Models</li>
-<li>Species</li>
-<li>PFTs</li>
-<li>Traits</li>
-<li>Inputs</li>
-<li>DB files</li>
-<li>Variables</li>
-<li>Formats</li>
-<li>(Link each section to relevant Bety tables)</li>
-</ul>
-
+<div id="pecanapi-workflow" class="section level2">
+<h2><span class="header-section-number">45.3</span> Registering a workflow with the database</h2>
+<p>For the PEcAn workflow to work, it needs to be registered with the PEcAn database.
+In <code>pecanapi</code>, this is done via the <code>insert_new_workflow</code> function.</p>
+<p>Building a workflow requires two important pieces of information: the model and site IDs.
+If you know these for your site and model, you can pass them directly into <code>insert_new_workflow</code>.
+However, chances are you may have to look them up in the database first.
+<code>pecanapi</code> provides several <code>search_*</code> utilities to make this easier.</p>
+<p>First, let’s pick a model.
+To list all models, we can run <code>search_models</code> with no arguments (other than the database connection object, <code>con</code>).</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">models &lt;-<span class="st"> </span><span class="kw">search_models</span>(con)</a></code></pre></div>
+<p>We can narrow down our search by model name, revision, or “type”.</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1"><span class="kw">search_models</span>(con, <span class="st">&quot;ED&quot;</span>)</a>
+<a class="sourceLine" id="cb341-2" data-line-number="2"><span class="kw">search_models</span>(con, <span class="st">&quot;sipnet&quot;</span>)</a>
+<a class="sourceLine" id="cb341-3" data-line-number="3"><span class="kw">search_models</span>(con, <span class="st">&quot;ED&quot;</span>, <span class="dt">revision =</span> <span class="st">&quot;git&quot;</span>)</a></code></pre></div>
+<p>Note that the search is case-insensitive by default, and searches before and after the input string.
+See <code>?search_models</code> to learn how to toggle this behavior.
+For the purposes of this tutorial, let’s use the SIPNET model because it has low input requirements and runs very quickly.
+Specifically, let’s use the <code>136</code> version.
+We could grab the model ID from the search results, but <code>pecanapi</code> also provides an additional helper function for retrieving model IDs if you know the exact name and revision.</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" data-line-number="1">model_id &lt;-<span class="st"> </span><span class="kw">get_model_id</span>(con, <span class="st">&quot;SIPNET&quot;</span>, <span class="st">&quot;136&quot;</span>)</a>
+<a class="sourceLine" id="cb342-2" data-line-number="2">model_id</a></code></pre></div>
+<p>We can repeat this process for sites with the <code>search_sites</code> function (though there is currently no <code>get_site_id</code> function).
+Note the use of <code>%</code> as a wildcard (matches zero or more of any character, equivalent to the regular expression <code>.*</code>).
+The two sites in the search below are largely identical, so we’ll use the one with more site information (i.e. where <code>mat</code> is not <code>NA</code>).</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">all_umbs &lt;-<span class="st"> </span><span class="kw">search_sites</span>(con, <span class="st">&quot;umbs%disturbance&quot;</span>)</a>
+<a class="sourceLine" id="cb343-2" data-line-number="2">all_umbs</a>
+<a class="sourceLine" id="cb343-3" data-line-number="3">site_id &lt;-<span class="st"> </span><span class="kw">subset</span>(all_umbs, <span class="op">!</span><span class="kw">is.na</span>(mat))[[<span class="st">&quot;id&quot;</span>]]</a></code></pre></div>
+<p>With site and model IDs in hand, we are ready to create a workflow.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1">workflow &lt;-<span class="st"> </span><span class="kw">insert_new_workflow</span>(con, site_id, model_id, <span class="dt">start_date =</span> <span class="st">&quot;2004-01-01&quot;</span>, <span class="dt">end_date =</span> <span class="st">&quot;2004-12-31&quot;</span>)</a>
+<a class="sourceLine" id="cb344-2" data-line-number="2">workflow</a></code></pre></div>
+<p>The <code>insert_new_workflow</code> function inserts the workflow into the database and returns a <code>data.frame</code> containing the row that was inserted.</p>
 </div>
-<div id="standalone-tools-modules" class="section level2">
-<h2><span class="header-section-number">20.5</span> Standalone tools (modules)</h2>
-<ul>
-<li>RTM</li>
-<li>Photosynthesis</li>
-<li>Allometry</li>
-<li><code>benchmark::load_data</code></li>
-</ul>
-<p>(Link to vignettes)</p>
-
+<div id="pecanapi-settings" class="section level2">
+<h2><span class="header-section-number">45.4</span> Building a settings object</h2>
+<p>Now that we have a workflow registered, we need to configure it via the PEcAn settings list.
+The PEcAn settings list is a nested list providing parameters for the various actions performed by the PEcAn workflow, including the trait meta-analysis, processing input files, and running models.
+It can be created manually with a bunch of <code>list</code> calls.
+However, this is tedious and error-prone, so <code>pecanapi</code> provides several utilities that facilitate this process.</p>
+<p>We start with a blank list.</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">list</span>()</a></code></pre></div>
+<p>Let’s start by adding the workflow we created in the previous section to this list.
+This is done via the <code>add_workflow</code> function, which takes as input a workflow <code>data.frame</code> and adds the relevant fields to the right places in the settings list.</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">add_workflow</span>(settings, workflow)</a></code></pre></div>
+<p>All <code>add_*</code> functions work by incrementally adding to an input settings object and returning a new modified settings object.
+The first argument of these functions is always the settings list, which gives these functions a consistent syntax and makes it easy to string multiple settings modifications together using the <code>magrittr</code> pipe (<code>%&gt;%</code>), similar to <code>tidyverse</code> tabular data manipulations.</p>
+<p>Let’s continue by adding a basic database configuration to this settings list.</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">add_database</span>(settings)</a></code></pre></div>
+<pre><code>## Error in add_database(settings): could not find function &quot;add_database&quot;</code></pre>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1">settings</a></code></pre></div>
+<pre><code>## list()</code></pre>
+<p>The <code>add_database</code> function adds a sensible default configuration for the PEcAn database in the right place with the right names in the settings file.
+These defaults can, of course, be modified in the function call (see <code>?add_database</code>), or, better yet, by setting package options, which is where most <code>add_*</code> functions get their defaults (see <code>?pecanapi_options</code>).</p>
+<p>Similarly, <code>add_rabbitmq</code> automatically adds the RabbitMQ configuration to the settings object.
+Like <code>add_database</code>, it takes all of its defaults from <code>options</code> (see <code>?pecanapi_options</code>).</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">add_rabbitmq</span>(settings)</a></code></pre></div>
+<pre><code>## Error in add_rabbitmq(settings): could not find function &quot;add_rabbitmq&quot;</code></pre>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">settings</a></code></pre></div>
+<pre><code>## list()</code></pre>
+<p>PFTs are added to the settings object with the <code>add_pft</code> function.
+To search for PFTs, use the <code>search_pfts</code> function, which can take optional arguments for PFT name (<code>name</code>), description of its definition (<code>definition</code>), and model type (<code>modeltype</code>).</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">search_pfts</span>(con, <span class="dt">name =</span> <span class="st">&quot;deciduous&quot;</span>, <span class="dt">modeltype =</span> <span class="st">&quot;sipnet&quot;</span>)</a>
+<a class="sourceLine" id="cb355-2" data-line-number="2"><span class="kw">search_pfts</span>(con, <span class="dt">name =</span> <span class="st">&quot;tundra&quot;</span>, <span class="dt">modeltype =</span> <span class="st">&quot;ED&quot;</span>)</a></code></pre></div>
+<p>As with <code>search_models</code> and <code>search_sites</code>, these functions are case insensitive and do partial matching by default.
+The <code>add_pft</code> function adds individual PFTs by name.</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">add_pft</span>(settings, <span class="st">&quot;temperate.deciduous&quot;</span>)</a></code></pre></div>
+<pre><code>## Error in add_pft(settings, &quot;temperate.deciduous&quot;): could not find function &quot;add_pft&quot;</code></pre>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1">settings</a></code></pre></div>
+<pre><code>## list()</code></pre>
+<p>This adds the <code>temperate.deciduous</code> PFT to the appropriate spot in the settings hierarchy.
+Whereas <code>add_pft</code> adds a single PFT to the settings, <code>add_pft_list</code> can add a vector of PFTs.</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">add_pft_list</span>(settings, <span class="kw">c</span>(<span class="st">&quot;temperate.coniferous&quot;</span>, <span class="st">&quot;miscanthus&quot;</span>))</a></code></pre></div>
+<pre><code>## Error in add_pft_list(settings, c(&quot;temperate.coniferous&quot;, &quot;miscanthus&quot;)): could not find function &quot;add_pft_list&quot;</code></pre>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1">settings</a></code></pre></div>
+<pre><code>## list()</code></pre>
+<p>Like <code>add_database</code>, <code>add_pft</code> and <code>add_pft_list</code> can also take arbitrary additional configuration arguments via their <code>...</code> argument.
+For <code>add_pft</code>, such arguments are passed only to that PFT, while for <code>add_pft_list</code>, they are shared between all PFTs.
+For more details, see <code>?add_pft</code>.</p>
+<p>One final note is that, because the settings object is just a list, you can make arbitrary modifications to it via base R’s <code>modifyList</code> function (indeed, many of the <code>pecanapi::add_*</code> functions use <code>modifyList</code> under the hood).</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1">customization &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb364-2" data-line-number="2">    <span class="dt">meta.analysis =</span> <span class="kw">list</span>(<span class="dt">iter =</span> <span class="dv">3000</span>, <span class="dt">random.effects =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb364-3" data-line-number="3">    <span class="dt">run =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb364-4" data-line-number="4">      <span class="dt">inputs =</span> <span class="kw">list</span>(<span class="dt">met =</span> <span class="kw">list</span>(<span class="dt">source =</span> <span class="st">&quot;CRUNCEP&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;SIPNET&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;ncss&quot;</span>))</a>
+<a class="sourceLine" id="cb364-5" data-line-number="5">    )</a>
+<a class="sourceLine" id="cb364-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb364-7" data-line-number="7">settings &lt;-<span class="st"> </span><span class="kw">modifyList</span>(settings, customization)</a></code></pre></div>
+<p>Note that <code>modifyList</code> operates recursively on nested lists, which makes it easy to modify settings at different levels of the list hierarchy.
+For instance, below, we modify the previous settings object to make <code>random.effects = TRUE</code>, and change the download method of the <code>inputs</code> to OpenDAP, but keep all the other settings the same.</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">modifyList</span>(settings, <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb365-2" data-line-number="2">  <span class="dt">meta.analysis =</span> <span class="kw">list</span>(<span class="dt">random.effects =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb365-3" data-line-number="3">  <span class="dt">run =</span> <span class="kw">list</span>(<span class="dt">inputs =</span> <span class="kw">list</span>(<span class="dt">met =</span> <span class="kw">list</span>(<span class="dt">method =</span> <span class="st">&quot;opendap&quot;</span>)))</a>
+<a class="sourceLine" id="cb365-4" data-line-number="4">))</a></code></pre></div>
+<p>All of these steps can be chained together via <code>magrittr</code> pipes (<code>%&gt;%</code>).</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb366-2" data-line-number="2">settings &lt;-<span class="st"> </span><span class="kw">list</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb366-3" data-line-number="3"><span class="st">  </span><span class="kw">add_workflow</span>(workflow) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb366-4" data-line-number="4"><span class="st">  </span><span class="kw">add_database</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb366-5" data-line-number="5"><span class="st">  </span><span class="kw">add_rabbitmq</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb366-6" data-line-number="6"><span class="st">  </span><span class="kw">add_pft</span>(<span class="st">&quot;temperate.deciduous&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb366-7" data-line-number="7"><span class="st">  </span><span class="kw">add_pft</span>(<span class="st">&quot;temperate.coniferous&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb366-8" data-line-number="8"><span class="st">  </span><span class="kw">modifyList</span>(<span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb366-9" data-line-number="9">    <span class="dt">meta.analysis =</span> <span class="kw">list</span>(<span class="dt">iter =</span> <span class="dv">3000</span>, <span class="dt">random.effects =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb366-10" data-line-number="10">    <span class="dt">run =</span> <span class="kw">list</span>(<span class="dt">inputs =</span> <span class="kw">list</span>(<span class="dt">met =</span> <span class="kw">list</span>(<span class="dt">source =</span> <span class="st">&quot;CRUNCEP&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;SIPNET&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;ncss&quot;</span>))),</a>
+<a class="sourceLine" id="cb366-11" data-line-number="11">    <span class="dt">host =</span> <span class="kw">list</span>(<span class="dt">rabbitmq =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb366-12" data-line-number="12">      <span class="dt">uri =</span> <span class="st">&quot;amqp://guest:guest@rabbitmq:5672/%2F&quot;</span>,</a>
+<a class="sourceLine" id="cb366-13" data-line-number="13">      <span class="dt">queue =</span> <span class="st">&quot;SIPNET_136&quot;</span></a>
+<a class="sourceLine" id="cb366-14" data-line-number="14">    ))</a>
+<a class="sourceLine" id="cb366-15" data-line-number="15">  ))</a></code></pre></div>
 </div>
-<div id="LoadData" class="section level2">
-<h2><span class="header-section-number">20.6</span> Loading Data in PEcAn</h2>
-<p>If you are loading data in to PEcAn for benchmarking, using the Benchmarking shiny app [provide link?] is recommended.</p>
-<p>Data can be loaded manually using the <code>load_data</code> function which in turn requires providing data format information using <code>query.format.vars</code> and the path to the data using <code>query.file.path</code>.</p>
-<p>Below is a description of the <code>load_data</code> function an a simple example of loading data manually.</p>
-<div id="function-load_data" class="section level3">
-<h3><span class="header-section-number">20.6.1</span> Function <code>load_data</code></h3>
-<div id="inputs-2" class="section level4">
-<h4><span class="header-section-number">20.6.1.1</span> Inputs</h4>
-<p>Required</p>
-<ul>
-<li><code>data.path</code>: path to the data that is the output of the function <code>query.file.path</code> (see example below)</li>
-<li><code>format</code>: R list object that is the output of the function <code>query.format.vars</code> (see example below)</li>
-</ul>
-<p>Optional</p>
-<ul>
-<li><code>start_year = NA</code>:</li>
-<li><code>end_year = NA</code>:</li>
-<li><code>site = NA</code></li>
-<li><code>vars.used.index=NULL</code></li>
-</ul>
+<div id="pecanapi-submit" class="section level2">
+<h2><span class="header-section-number">45.5</span> Submitting a run</h2>
+<p>Now that we have all the pieces, let’s put them together into a single settings object.</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1">settings &lt;-<span class="st"> </span><span class="kw">list</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb367-2" data-line-number="2"><span class="st">  </span><span class="kw">add_workflow</span>(workflow) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb367-3" data-line-number="3"><span class="st">  </span><span class="kw">add_database</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb367-4" data-line-number="4"><span class="st">  </span><span class="kw">add_pft</span>(<span class="st">&quot;temperate.deciduous&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb367-5" data-line-number="5"><span class="st">  </span><span class="kw">modifyList</span>(<span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb367-6" data-line-number="6">    <span class="dt">meta.analysis =</span> <span class="kw">list</span>(<span class="dt">iter =</span> <span class="dv">3000</span>, <span class="dt">random.effects =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb367-7" data-line-number="7">    <span class="dt">run =</span> <span class="kw">list</span>(<span class="dt">inputs =</span> <span class="kw">list</span>(<span class="dt">met =</span> <span class="kw">list</span>(<span class="dt">source =</span> <span class="st">&quot;CRUNCEP&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;SIPNET&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;ncss&quot;</span>))),</a>
+<a class="sourceLine" id="cb367-8" data-line-number="8">    <span class="dt">host =</span> <span class="kw">list</span>(<span class="dt">rabbitmq =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb367-9" data-line-number="9">      <span class="dt">uri =</span> <span class="st">&quot;amqp://guest:guest@rabbitmq:5672/%2F&quot;</span>,</a>
+<a class="sourceLine" id="cb367-10" data-line-number="10">      <span class="dt">queue =</span> <span class="st">&quot;SIPNET_136&quot;</span></a>
+<a class="sourceLine" id="cb367-11" data-line-number="11">    ))</a>
+<a class="sourceLine" id="cb367-12" data-line-number="12">  ))</a></code></pre></div>
+<p>We can then submit these settings as a run via the <code>submit_workflow</code> function.
+This function has only one required input – the settings list – but a number of optional arguments for specifying how to connect to the RabbitMQ API (see <code>?submit_workflow</code> for details).</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1"><span class="kw">submit_workflow</span>(settings)</a></code></pre></div>
+<p>If the workflow was submitted successfully, this will return the HTTP response <code>routed = TRUE</code> as a named list.
+Note that this only means that the RabbitMQ message was posted; the workflow can still crash for various reasons.
+To see the status of the workflow, look at <code>docker-compose logs executor</code> or use the Portainer interface.</p>
 </div>
-<div id="output-1" class="section level4">
-<h4><span class="header-section-number">20.6.1.2</span> Output</h4>
-<ul>
-<li>R data frame containing the requested variables converted in to PEcAn standard name and units and time steps in <code>POSIX</code> format.</li>
-</ul>
-</div>
-</div>
-<div id="example" class="section level3">
-<h3><span class="header-section-number">20.6.2</span> Example</h3>
-<p>The data for this example has already been entered in to the database. To add new data go to <a href="creating-a-new-format-record-in-bety.html#NewInput">new data documentation</a>.</p>
-<p>To load the Ameriflux data for the Harvard Forest (US-Ha1) site.</p>
-<ol style="list-style-type: decimal">
-<li>Create a connection to the BETY database. This can be done using R function</li>
-</ol>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">bety =<span class="st"> </span>PEcAn.DB<span class="op">::</span><span class="kw">betyConnect</span>(<span class="dt">php.config =</span> <span class="st">&quot;pecan/web/config.php&quot;</span>)</a></code></pre></div>
-<p>where the complete path to the <code>config.php</code> is specified. See <a href="https://github.com/PecanProject/pecan/blob/master/web/config.example.php">here</a> for an example <code>config.php</code> file.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Look up the inputs record for the data in BETY.</li>
-</ol>
-<p><img src="04_advanced_user_guide/03_standalone_tools/images/Input_ID_name.png" width="50%" height="50%" style="display: block; margin: auto;" /></p>
-<p>To find the input ID, either look at</p>
-<ul>
-<li><p>The url of the record (see image above)</p></li>
-<li><p>In R run</p></li>
-</ul>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb92-2" data-line-number="2">input_name =<span class="st"> &quot;AmerifluxLBL_site_0-758&quot;</span> <span class="co">#copied directly from online</span></a>
-<a class="sourceLine" id="cb92-3" data-line-number="3">input.id =<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;inputs&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>input_name) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)</a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Additional arguments to <code>query.format.vars</code> are optional</p>
-<ol style="list-style-type: decimal">
-<li>If you only want to load a subset of dates in the data, specify start and end year, otherwise all data will be loaded.</li>
-<li>If you only want to load a select list of variables from the data, look up their IDs in BETY, otherwise all variables will be loaded.</li>
-</ol></li>
-<li><p>In R run</p></li>
-</ol>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">   format =<span class="st"> </span>PEcAn.DB<span class="op">::</span><span class="kw">query.format.vars</span>(bety, input.id)</a></code></pre></div>
-<p>Examine the resulting R list object to make sure it returned the correct information.</p>
-<p>The example format contains the following objects:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">   <span class="op">$</span>file_name</a>
-<a class="sourceLine" id="cb94-2" data-line-number="2">   [<span class="dv">1</span>] <span class="st">&quot;AMERIFLUX_BASE_HH&quot;</span></a>
-<a class="sourceLine" id="cb94-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb94-4" data-line-number="4">   <span class="op">$</span>mimetype</a>
-<a class="sourceLine" id="cb94-5" data-line-number="5">   [<span class="dv">1</span>] <span class="st">&quot;csv&quot;</span></a>
-<a class="sourceLine" id="cb94-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb94-7" data-line-number="7">   <span class="op">$</span>skip</a>
-<a class="sourceLine" id="cb94-8" data-line-number="8">   [<span class="dv">1</span>] <span class="dv">2</span></a>
-<a class="sourceLine" id="cb94-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb94-10" data-line-number="10">   <span class="op">$</span>header</a>
-<a class="sourceLine" id="cb94-11" data-line-number="11">   [<span class="dv">1</span>] <span class="dv">1</span></a>
-<a class="sourceLine" id="cb94-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb94-13" data-line-number="13">   <span class="op">$</span>na.strings</a>
-<a class="sourceLine" id="cb94-14" data-line-number="14">   [<span class="dv">1</span>] <span class="st">&quot;-9999&quot;</span> <span class="st">&quot;-6999&quot;</span> <span class="st">&quot;9999&quot;</span>  <span class="st">&quot;NA&quot;</span>   </a>
-<a class="sourceLine" id="cb94-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb94-16" data-line-number="16">   <span class="op">$</span>time.row</a>
-<a class="sourceLine" id="cb94-17" data-line-number="17">   [<span class="dv">1</span>] <span class="dv">4</span></a>
-<a class="sourceLine" id="cb94-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb94-19" data-line-number="19">   <span class="op">$</span>site</a>
-<a class="sourceLine" id="cb94-20" data-line-number="20">   [<span class="dv">1</span>] <span class="dv">758</span></a>
-<a class="sourceLine" id="cb94-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb94-22" data-line-number="22">   <span class="op">$</span>lat</a>
-<a class="sourceLine" id="cb94-23" data-line-number="23">   [<span class="dv">1</span>] <span class="fl">42.5378</span></a>
-<a class="sourceLine" id="cb94-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb94-25" data-line-number="25">   <span class="op">$</span>lon</a>
-<a class="sourceLine" id="cb94-26" data-line-number="26">   [<span class="dv">1</span>] <span class="fl">-72.1715</span></a>
-<a class="sourceLine" id="cb94-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb94-28" data-line-number="28">   <span class="op">$</span>time_zone</a>
-<a class="sourceLine" id="cb94-29" data-line-number="29">   [<span class="dv">1</span>] <span class="st">&quot;America/New_York&quot;</span></a></code></pre></div>
-<p>The first 4 rows of the table <code>format$vars</code> looks like this:</p>
-<table style="width:100%;">
-<colgroup>
-<col width="9%" />
-<col width="8%" />
-<col width="11%" />
-<col width="8%" />
-<col width="9%" />
-<col width="9%" />
-<col width="7%" />
-<col width="8%" />
-<col width="10%" />
-<col width="7%" />
-<col width="10%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>bety_name</th>
-<th>variable_id</th>
-<th>input_name</th>
-<th>input_units</th>
-<th>storage_type</th>
-<th>column_number</th>
-<th>bety_units</th>
-<th>mstmip_name</th>
-<th>mstmip_units</th>
-<th>pecan_name</th>
-<th>pecan_units</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>air_pressure</td>
-<td>554</td>
-<td>PA</td>
-<td>kPa</td>
-<td></td>
-<td>19</td>
-<td>Pa</td>
-<td>Psurf</td>
-<td>Pa</td>
-<td>Psurf</td>
-<td>Pa</td>
-</tr>
-<tr class="even">
-<td>airT</td>
-<td>86</td>
-<td>TA</td>
-<td>celsius</td>
-<td></td>
-<td>4</td>
-<td>degrees C</td>
-<td>Tair</td>
-<td>K</td>
-<td>Tair</td>
-<td>K</td>
-</tr>
-<tr class="odd">
-<td>co2atm</td>
-<td>135</td>
-<td>CO2_1</td>
-<td>umol mol-1</td>
-<td></td>
-<td>20</td>
-<td>umol mol-1</td>
-<td>CO2air</td>
-<td>micromol mol-1</td>
-<td>CO2air</td>
-<td>micromol mol-1</td>
-</tr>
-<tr class="even">
-<td>datetime</td>
-<td>5000000001</td>
-<td>TIMESTAMP_START</td>
-<td>ymd_hms</td>
-<td>%Y%m%d%H%M</td>
-<td>1</td>
-<td>ymd_hms</td>
-<td>NA</td>
-<td>NA</td>
-<td>datetime</td>
-<td>ymd_hms</td>
-</tr>
-</tbody>
-</table>
-<ol start="5" style="list-style-type: decimal">
-<li>Get the path to the data</li>
-</ol>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">   data.path =<span class="st"> </span>PEcAn.DB<span class="op">::</span><span class="kw">query.file.path</span>(</a>
-<a class="sourceLine" id="cb95-2" data-line-number="2">     <span class="dt">input.id =</span> input.id, </a>
-<a class="sourceLine" id="cb95-3" data-line-number="3">     <span class="dt">host_name =</span> PEcAn.remote<span class="op">::</span><span class="kw">fqdn</span>(), </a>
-<a class="sourceLine" id="cb95-4" data-line-number="4">     <span class="dt">con =</span> bety<span class="op">$</span>con)</a></code></pre></div>
-<ol start="6" style="list-style-type: decimal">
-<li>Load the data</li>
-</ol>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">   data =<span class="st"> </span>PEcAn.benchmark<span class="op">::</span><span class="kw">load_data</span>(<span class="dt">data.path =</span> data.path, <span class="dt">format =</span> format)</a></code></pre></div>
+<div id="pecanapi-output" class="section level2">
+<h2><span class="header-section-number">45.6</span> Processing output</h2>
+<p>All of PEcAn’s outputs as well as its database files (<code>dbfiles</code>) can be accessed remotely via the THREDDS data server.
+You can explore these files by browsing to <code>localhost:8000/thredds/</code> in a browser (substituting hostname and port, accordingly).</p>
+<p>All files, regardless of file type, can be downloaded directly (via HTTP) through the THREDDS <code>fileServer</code> protocol.
+In <code>pecanapi</code>, URLs for these files can be easily constructed via <code>output_url</code> for any workflow output and <code>run_url</code> for run-specific outputs.
+For instance, to read the <code>workflow.Rout</code> file from the workflow we created earlier, you can do the following:</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1">workflow_id &lt;-<span class="st"> </span>workflow[[<span class="st">&quot;id&quot;</span>]]</a>
+<a class="sourceLine" id="cb369-2" data-line-number="2"><span class="kw">readLines</span>(workflow_id, <span class="st">&quot;workflow.Rout&quot;</span>)</a></code></pre></div>
+<p>Outputs in NetCDF format can also be accessed via the OpenDAP service, which allows remote variable selection and subsetting (meaning you can only download the outputs you need without needing to download the entire file).
+These URLs are created via the <code>thredds_dap_url</code> (for a generic URL) or <code>run_dap</code> (to access outputs from a specific model run).</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1">sipnet_out &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="kw">run_dap</span>(workflow_id, <span class="st">&quot;2004.nc&quot;</span>))</a>
+<a class="sourceLine" id="cb370-2" data-line-number="2">gpp &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(sipnet_out, <span class="st">&quot;GPP&quot;</span>)</a>
+<a class="sourceLine" id="cb370-3" data-line-number="3">time &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(sipnet_out, <span class="st">&quot;time&quot;</span>)</a>
+<a class="sourceLine" id="cb370-4" data-line-number="4">ncdf4<span class="op">::</span><span class="kw">nc_close</span>(sipnet_out)</a>
+<a class="sourceLine" id="cb370-5" data-line-number="5"><span class="kw">plot</span>(time, gpp, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>
+
+
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="reference-runs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="working-with-the-vm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-assimilation-concepts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="faq.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
