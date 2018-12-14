@@ -691,7 +691,7 @@ In other words, <strong>do not spread a single chapter across multiple files</st
 This is used to create the greyed-out section headers in the rendered HTML.
 For instance, this section has a file called <code>00_introduction.Rmd</code> which contains only the following:</p>
 <pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="fu"># (PART) Introduction {-}</span></code></pre>
-<p>To cross-referencing a different section, use that section’s unique tag (starts with <code>#</code>, surrounded in curly braces).
+<p>To cross-reference a different section, use that section’s unique tag (starts with <code>#</code>; appears next to the section heading surrounded in curly braces).
 For instance, the following Markdown contains two sections that cross-reference each other:</p>
 <pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="fu">## Introduction {#intro}</span>
 
@@ -705,7 +705,7 @@ We have no strict rules about this, but it’s useful to have tags that give som
 If section organization changes, it is fine to move header tags, but <strong>avoid altering existing tags</strong> as this will break all the links pointing to that tag.
 (Note that it is also possible to link to section headings by their exact title. However, this is not recommended because these section titles could change, which would break the links.)</p>
 <p>When referring to PEcAn packages or specific functions, it is a good idea to link to the <a href="https://pecanproject.github.io/pkgdocs.html">rendered package documentation</a>.
-For instance, here are links to the <a href="https://pecanproject.github.io/models/ed/docs/index.html"><code>models/ed</code></a> package, the <a href="https://pecanproject.github.io/models/ed/docs/reference/modify_ed2in.html"><code>PEcAn.ED2::modify_ed2in</code></a> function, and the PEcAnRTM package <a href="https://pecanproject.github.io/modules/rtm/articles/pecanrtm.vignette.html">vignette</a>.
+For instance, here are links to the <a href="https://pecanproject.github.io/models/ed/docs/index.html"><code>models/ed</code></a> package, the <a href="https://pecanproject.github.io/models/ed/docs/reference/modify_ed2in.html"><code>PEcAn.ED2::modify_ed2in</code></a> function, and the PEcAnRTM package <a href="https://pecanproject.github.io/modules/rtm/docs/articles/pecanrtm.vignette.html">vignette</a>.
 If necessary, you can also link directly to specific lines or blocks in the source code on GitHub, <a href="https://github.com/PecanProject/pecan/blob/develop/models/ed/R/create_veg.R#L11-L25">like this</a>.
 (To get a link to a line, click its line number. To then select a block, shift-click another line number.)</p>
 <p>For additional information about how <code>bookdown</code> works (including information about its syntax), see the <a href="https://bookdown.org/yihui/bookdown/">Bookdown free online book</a>.</p>
