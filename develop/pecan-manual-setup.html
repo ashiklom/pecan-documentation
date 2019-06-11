@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 About the PEcAn Book | The Predictive Ecosystem Analyzer</title>
-  <meta name="description" content="3 About the PEcAn Book | The Predictive Ecosystem Analyzer" />
+  <title>4 Install PEcAn | The Predictive Ecosystem Analyzer</title>
+  <meta name="description" content="4 Install PEcAn | The Predictive Ecosystem Analyzer" />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 About the PEcAn Book | The Predictive Ecosystem Analyzer" />
+  <meta property="og:title" content="4 Install PEcAn | The Predictive Ecosystem Analyzer" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 About the PEcAn Book | The Predictive Ecosystem Analyzer" />
+  <meta name="twitter:title" content="4 Install PEcAn | The Predictive Ecosystem Analyzer" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="contributor-covenant-code-of-conduct.html">
-<link rel="next" href="pecan-manual-setup.html">
+<link rel="prev" href="about-the-pecan-book.html">
+<link rel="next" href="user-section.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -490,104 +490,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="about-the-pecan-book" class="section level1">
-<h1><span class="header-section-number">3</span> About the PEcAn Book</h1>
-<p>This book serves as documentation for the PEcAn Project. It contains descriptions of topics necessary to inform a beginner and advanced user as well as requisite materials for developers. It does not contain low-level descriptions of functions within PEcAn. Our aim for this documentation is to educate you about the PEcAn software, the possibilities of its usage, and the standards,expectations, and core workflows for developers.</p>
-<p>This book is organized four main topics:</p>
-<p><strong>Introduction</strong> - Brief explanation of PEcAn, how to obtain the PEcAn VM, and explanation of basic web interface functions.</p>
-<p><strong>Tutorials/Demos/Workflows</strong> - All User and Developer tutorials/demos/workflows to explain how to use and add to PEcAn in different ways.</p>
-<p><strong>Topical Pages</strong> - Explanation of main PEcAn components and how they fit together.</p>
-<p><strong>Appendix</strong> - External documentation and sources of information and a FAQ section.</p>
-<div id="general-feedbackcommentssuggestions" class="section level2">
-<h2><span class="header-section-number">3.1</span> General Feedback/Comments/Suggestions</h2>
-<p><em>We want your ideas, thoughts, comments, and suggestions!</em> As a community we are committed to creating an inclusive and supportive atmosphere so we all to reach out to us in the following ways:</p>
-<p><strong>Github:</strong> <a href="https://github.com/PecanProject/pecan" class="uri">https://github.com/PecanProject/pecan</a>
-This is the main hub of communication surrounding PEcAn development. Check out the issues section to see known bugs, upcoming features, and ideas for future development. Feel free to comment on existing issues or open new ones with questions, bug reports, feature requests, and/or ideas.</p>
-<p><strong>Slack:</strong> <a href="https://pecanproject.slack.com/" class="uri">https://pecanproject.slack.com/</a>
-Slack serves as our day to day mode of communication. To join us in slack you will need to create an account first. This is done in 3 steps:</p>
-<ol style="list-style-type: decimal">
-<li>Request an <a href="https://publicslack.com/slacks/pecanproject/invites/new">inivitation</a> to join Slack, this will be send by email to address you provided.</li>
-<li><a id="slackreturn"></a>Check your inbox for an email from Slack with subject “Rob Kooper has invited you to join a Slack workspace”. This email should have a link that you can click to join slack.</li>
-<li>When you click a webpage will open up that asks you to create an account, once that is done you can login into the slack chatrooms.</li>
-</ol>
-<p><strong>Email:</strong> pecanproj[at]gmail.com
-If you do not wish your communication with the team to be public, send us an email at the address above and we will get back to you as soon as possible.</p>
-</div>
-<div id="bookediting" class="section level2">
-<h2><span class="header-section-number">3.2</span> Editing this book</h2>
-<p>The file organization of this documentation can be described simply as follows:</p>
+<div id="pecan-manual-setup" class="section level1">
+<h1><span class="header-section-number">4</span> Install PEcAn</h1>
+<p>These instructions are provided to document how to install and setup PEcAn. It includes:</p>
 <ul>
-<li>Each <strong>chapter</strong> is in its own file (within the corresponding section).</li>
-<li>Each <strong>group of chapters</strong> (i.e. “part” in LaTeX) is in its own directory.</li>
+<li><a href="pecan-manual-setup.html#install-vm">Virtual machine</a></li>
+<li><a href="pecan-manual-setup.html#install-docker">PEcAn Docker</a></li>
+<li><a href="pecan-manual-setup.html#install-native">PEcAn OS specific installation</a></li>
 </ul>
-<p>Sections and chapters are rendered (and numbered) in alpha-numerical order of their corresponding file names.
-Therefore, each section directory and chapter file name should be <strong>prefixed with a two-digit (zero-padded) number</strong>.
-File and directory names should be as similar as possible to the name of the corresponding chapter or section.
-For instance, the file name for this chapter’s source file is <code>06_reference/10_editing_this_book.Rmd</code>.
-This numbering means that if you need to create an additional chapter <em>before</em> an existing one, you will have to renumber all chapters following it.</p>
-<p>To ensure correct rendering, you should also make sure that <strong>each chapter starts with a level 1 heading</strong> (<code># heading</code>).
-For instance, this chapter’s source starts with:</p>
-<pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="fu"># Editing this book {#bookediting}</span>
-
-The file organization of this documentation can be described simply as follows:
-...</code></pre>
-<p>Furthermore, to keep the organization consistent, each chapter should have <strong>exactly one level 1 heading</strong> (i.e. do not combine multiple chapters into a single file).
-In other words, <strong>do not spread a single chapter across multiple files</strong>, and <strong>do not put multiple chapters in the same file</strong>.</p>
-<p>Each <strong>section</strong> directory has a file starting with <code>00</code> that contains only the section (or “Part”) title.
-This is used to create the greyed-out section headers in the rendered HTML.
-For instance, this section has a file called <code>00_introduction.Rmd</code> which contains only the following:</p>
-<pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="fu"># (PART) Introduction {-}</span></code></pre>
-<p>To cross-reference a different section, use that section’s unique tag (starts with <code>#</code>; appears next to the section heading surrounded in curly braces).
-For instance, the following Markdown contains two sections that cross-reference each other:</p>
-<pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="fu">## Introduction {#intro}</span>
-
-Here is the intro. This is a link to the <span class="ot">[next section](#section-one)</span>.
-
-<span class="fu">## First section. {#section-one}</span>
-
-As mentioned in the <span class="ot">[previous section](#intro)</span>.</code></pre>
-<p>If no header tag exists for a section you want to cross-reference, you should create one.
-We have no strict rules about this, but it’s useful to have tags that give some sense of their parent hierarchy and reference their parent sections (e.g. <code>#models</code>, <code>#models-ed</code>, and <code>#models-ed-xml</code> to refer to a chapter on models, with a subsection on ED and a sub-subsection on ED XML configuration).
-If section organization changes, it is fine to move header tags, but <strong>avoid altering existing tags</strong> as this will break all the links pointing to that tag.
-(Note that it is also possible to link to section headings by their exact title. However, this is not recommended because these section titles could change, which would break the links.)</p>
-<p>When referring to PEcAn packages or specific functions, it is a good idea to link to the <a href="https://pecanproject.github.io/pkgdocs.html">rendered package documentation</a>.
-For instance, here are links to the <a href="https://pecanproject.github.io/models/ed/docs/index.html"><code>models/ed</code></a> package, the <a href="https://pecanproject.github.io/models/ed/docs/reference/modify_ed2in.html"><code>PEcAn.ED2::modify_ed2in</code></a> function, and the PEcAnRTM package <a href="https://pecanproject.github.io/modules/rtm/docs/articles/pecanrtm.vignette.html">vignette</a>.
-If necessary, you can also link directly to specific lines or blocks in the source code on GitHub, <a href="https://github.com/PecanProject/pecan/blob/develop/models/ed/R/create_veg.R#L11-L25">like this</a>.
-(To get a link to a line, click its line number. To then select a block, shift-click another line number.)</p>
-<p>To insert figures, use <code>knitr::include_graphics(&quot;path/to/figure.png&quot;)</code> inside an <a href="https://yihui.name/knitr/options/#chunk-options">R code chunk</a>.
-For example:</p>
-<pre><code>```{r}
-knitr::include_graphics(&quot;04_advanced_user_guide/images/Input_ID_name.png&quot;)
-```</code></pre>
-<p>Note that image file names are <strong>relative to the <code>book_source</code> directory</strong>, <strong>NOT</strong> to the markdown file.
-In other words, if <code>myimage.png</code> was in the same directory as this file, I would still have to reference it as <code>06_reference/myimage.png</code> – I could <em>not</em> just do <code>myimage.png</code>.
-The size, caption, and other properties of the rendered image can be controlled via <a href="https://yihui.name/knitr/options/#plots">chunk options</a>.</p>
-<p>For additional information about how <code>bookdown</code> works (including information about its syntax), see the <a href="https://bookdown.org/yihui/bookdown/">Bookdown free online book</a>.</p>
+<p>The PEcAn code and necessary infrastructure can be obtained and compiled in different ways.
+This set of instructions will help facilitate your path and the steps necessary to move forward to have a fully a functioning PEcAn environment.</p>
+<div id="install-vm" class="section level2">
+<h2><span class="header-section-number">4.1</span> Virtual Machine (VM)</h2>
+<p>The PEcAn virtual machine consists of all of PEcAn pre-compiled within a Linux operating system and saved in a “virtual machine” (VM).
+Virtual machines allow for running consistent set-ups without worrying about differences between operating systems, library dependencies, compiling the code, etc.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Install VirtualBox</strong> This is the software that runs the virtual machine. You can find the download link and instructions at <a href="http://www.virtualbox.org" class="uri">http://www.virtualbox.org</a>. <em>NOTE: On Windows you may see a warning about Logo testing, it is okay to ignore the warning.</em></p></li>
+<li><p><strong>Download the PEcAn VM</strong> You can find the download link at <a href="http://opensource.ncsa.illinois.edu/projects/artifacts.php?key=PECAN" class="uri">http://opensource.ncsa.illinois.edu/projects/artifacts.php?key=PECAN</a>, under the “<strong>Files</strong>” header. Click the “.ova” file to begin the download. Note that the file is ~7 GB, so this download can take several minutes to hours depending on your connection speed. Also, the VM requires &gt;4 GB of RAM to operate correctly. Please check current usage of RAM and shutdown processes as needed.</p></li>
+<li><p><strong>Import the VM</strong> Once the download is complete, open VirtualBox. In the VirtualBox menus, go to “File” → “Import Appliance” and locate the downloaded “.ova” file.</p></li>
+</ol>
+<p>For Virtualbox version 5.x: In the Appliance Import Settings, make sure you select “Reinitialize the MAC address of all network cards” (picture below). This is not selected by default and can result in networking issues since multiple machines might claim to have the same network MAC Address.</p>
+<p><img src="figures/pic1.jpg" width="259" style="display: block; margin: auto;" /></p>
+<p>For Virtualbox versions starting with 6.0, there is a slightly different interface (see figure). Select “Generate new MAC addresses for all network adapters” from the MAC Address Policy:</p>
+<p><img src="figures/pic1v2.png" width="510" style="display: block; margin: auto;" /></p>
+<p>NOTE: If you experience network connection difficulties in the VM with this enabled, try re-importing the VM without this setting selected).</p>
+<p>Finally, click “Import” to build the Virtual Machine from its image.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Launch PEcAn</strong> Double click the icon for the PEcAn VM. A terminal window will pop up showing the machine booting up which may take a minute. It is done booting when you get to the <code>pecan login:</code> prompt. You do not need to login as the VM behaves like a server that we will be accessing through you web browser. Feel free to minimize the VM window.</li>
+</ol>
+<ul>
+<li>If you <em>do</em> want to login to the VM, the credentials are as follows: <code>username: carya</code>, <code>password: illinois</code> (after the pecan tree, [<em>Carya illinoinensis</em>][pecan-wikipedia]).</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li><p><strong>Open the PEcAn web interface</strong> With the VM running in the background, open any web browser on the same machine and navigate to <code>localhost:6480/pecan/</code> to start the PEcAn workflow. (NOTE: The trailing backslash may be necessary depending on your browser)</p></li>
+<li><p><strong>Advanced interaction with the VM is mostly done through the command line.</strong> You can perform these manipulations from inside the VM window. However, the VM is also configured for SSH access (username <code>carya</code>, hostname <code>localhost</code>, port 6422). For instance, to open an interactive shell inside the VM from a terminal on the host machine, use a command like <code>ssh -l carya -p 6422 localhost</code> (when prompted, the password is <code>illinois</code>, as above).</p></li>
+</ol>
+<p>These steps should be enough to get you started with running models and performing basic analyses with PEcAn.
+For advanced details on VM configuration and maintenance, see the <a href="working-with-vm.html#working-with-vm">Advanced VM section</a>.</p>
 </div>
-<div id="how-to-create-your-own-version-of-documentation" class="section level2">
-<h2><span class="header-section-number">3.3</span> How to create your own version of Documentation</h2>
-<p>To create your own version of documentation you’ll need to follow these steps:
-These procedures assume you have an github account, you forked pecan, you have cloned pecan locally, and have a <a href="https://travis-ci.org/">TRAVIS</a> account.
-1. Create a repository under your github account with the name “pecan-documentation”. Clear it of any files. Set up the repository with <a href="https://pages.github.com/">Github Pages</a> by going to the settings tab for that repository.
-2. Create a personal access token for github: <a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line" class="uri">https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line</a> and copy it.
-3. Create a TRAVIS environment variable called <code>GITHUB_PAT</code> and save the access token you made as a secret variable.
-4. Create a branch from your local pecan repository with a name that starts with <code>release/</code>. (ie. Release/vtonydoc)
-5. Make whichever changes you would like to the documentation and push it up to your fork.</p>
-<p>From here TRAVIS will build your documentation. The web version of your documentation will be rendered with the url following the structure: username.github.io/pecan-documentation/pattern_after_release/</p>
+<div id="install-docker" class="section level2">
+<h2><span class="header-section-number">4.2</span> Docker</h2>
+<p>This is a short documentation on how to start with Docker and PEcAn.
+This will not go into much detail about about how to use Docker – for more details, see the main <a href="docker-index.html#docker-intro">Docker topical page</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Install Docker</strong>. Follow the instructions for your operating system at <a href="https://www.docker.com/community-edition#/download" class="uri">https://www.docker.com/community-edition#/download</a>.
+Once Docker is installed, make sure it is running.
+To test that Docker is installed and running, open a terminal and run the following commands:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker</span> run hello-world</code></pre>
+<p>If successful, this should return a message starting with <code>&quot;Hello from Docker!&quot;</code>.
+If this doesn’t work, there is something wrong with your configuration.
+Refer to the Docker documentation for debugging.</p>
+<p>NOTE: Depending on how Docker is installed and configured, you may have to run this command as <code>sudo</code>.
+Try running the command without <code>sudo</code> first.
+If that fails, but running as <code>sudo</code> succeeds, see <a href="https://docs.docker.com/install/linux/linux-postinstall/">these instructions</a> for steps to use Docker as a non-root user.</p></li>
+<li><p><strong>Install docker-compose</strong>. If you are running this on a Mac or Windows this might be already installed. On Linux you will need to install this it separately; see <a href="https://docs.docker.com/compose/install/" class="uri">https://docs.docker.com/compose/install/</a>.</p>
+<p>To see if docker-compose is successfully installed, use the following shell command:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker-compose</span> -v</code></pre>
+<p>This should print the current version of docker-compose. We have tested the instruction below with versions of docker-compose 1.22 and above.</p></li>
+<li><p><strong>Download the PEcAn docker-compose file</strong>. It is located in the root directory of the <a href="https://github.com/pecanproject/pecan">PEcAn source code</a>. For reference, here are direct links to the <a href="https://raw.githubusercontent.com/PecanProject/pecan/master/docker-compose.yml">latest stable version</a> and the <a href="https://raw.githubusercontent.com/PecanProject/pecan/master/docker-compose.yml">bleeding edge development version</a>. (To download the files, you should be able to right click the link and select “Save link as”.) Make sure the file is saved as <code>docker-compose.yml</code> in a directory called <code>pecan</code>.</p></li>
+<li><p><strong>Initialize the PEcAn database and data images</strong>. The following <code>docker-compose</code> commands are used to download all the data PEcAn needs to start working. For more on how they work, see our <a href="docker-index.html#pecan-docker-quickstart-init">Docker topical pages</a>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Create and start the PEcAn database container (without any data)</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker-compose</span> up -d postgres</code></pre>
+<p>If this is successful, the end of the output should look like the following:</p>
+<pre><code>Creating pecan_postgres_1 ... done</code></pre></li>
+<li><p>“Initialize” the data for the PEcAn database.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker-compose</span> run --rm bety initialize</code></pre>
+<p>This should produce a lot of output describing the database operations happening under the hood.
+Some of these will look like errors (including starting with <code>ERROR</code>), but <em>this is normal</em>.
+This command succeeded if the output ends with the following:</p>
+<pre><code>Added carya41 with access_level=4 and page_access_level=1 with id=323
+Added carya42 with access_level=4 and page_access_level=2 with id=325
+Added carya43 with access_level=4 and page_access_level=3 with id=327
+Added carya44 with access_level=4 and page_access_level=4 with id=329
+Added guestuser with access_level=4 and page_access_level=4 with id=331</code></pre></li>
+<li><p>Download and configure the core PEcAn database files.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker</span> run -ti --rm --network pecan_pecan --volume pecan_pecan:/data --env FQDN=docker pecan/data:develop</code></pre>
+<p>This will produce a lot of output describing file operations.
+This command succeeded if the output ends with the following:</p>
+<pre><code>######################################################################
+Done!
+###################################################################### </code></pre></li>
+</ol></li>
+<li><p><strong>Start the PEcAn stack</strong>. Assuming all of the steps above completed successfully, start the full stack by running the following shell command:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker-compose</span> up -d</code></pre>
+<p>If all of the containers started successfully, you should be able to access the various components from a browser via the following URLs (if you run these commands on a remote machine replace localhost with the actual hostname).</p>
+<ul>
+<li>PEcAn web interface (running models) – <a href="http://localhost:8000/pecan/" class="uri">http://localhost:8000/pecan/</a> (NOTE: The trailing backslash is necessary.)</li>
+<li>PEcAn documentation and home page – <a href="http://localhost:8000/" class="uri">http://localhost:8000/</a></li>
+<li>BETY web interface – <a href="http://localhost:8000/bety/" class="uri">http://localhost:8000/bety/</a></li>
+<li>File browser (minio) – <a href="http://localhost:8000/minio/" class="uri">http://localhost:8000/minio/</a></li>
+<li>RabbitMQ management console (for managing queued processes) – <a href="http://localhost:8000/rabbitmq/" class="uri">http://localhost:8000/rabbitmq/</a></li>
+<li>Traefik, webserver showing maps from URLs onto their respective containers – <a href="http://localhost:8000/traefik/" class="uri">http://localhost:8000/traefik/</a></li>
+<li>Monitor, service that monitors models and shows all models that are online as well as how many instances are online and the number of jobs waiting. The output is in JSON – <a href="http://localhost:8000/monitor/" class="uri">http://localhost:8000/monitor/</a></li>
+</ul></li>
+</ol>
+<p>For troubleshooting and advanced configuration, see our <a href="docker-index.html#docker-index">Docker topical pages</a>.</p>
+</div>
+<div id="install-native" class="section level2">
+<h2><span class="header-section-number">4.3</span> (Advanced) Native install</h2>
+<p>The full PEcAn system has a lot of dependencies, including R packages, compiled C and Fortran libraries, and system services and utilities.
+Installing all of these side by side, and getting them to work harmoniously, is very time-consuming and challenging, which is why we <strong>strongly</strong> encourage new users to use the VM or Docker if possible.</p>
+<p>In a nutshell, the process for manual installation is as follows:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Download the <a href="https://github.com/pecanproject/pecan">PEcAn source code</a> from GitHub</strong>. The recommended way to do this is with the shell command <code>git clone</code>, i.e. <code>git clone https://github.com/pecanproject/pecan</code>.</p></li>
+<li><p><strong>Download the BETY source code from GitHub</strong>.</p></li>
+<li><p><strong>Install the PEcAn R packages and their dependencies</strong>. This can be done by running the shell command <code>make</code> inside the PEcAn source code directory. Note that many of the R packages on which PEcAn depends have system dependencies that are not included by default on most operating systems, but almost all of which should be available via your operating system’s package manager (e.g. Homebrew for MacOS, <code>apt</code> for Ubuntu/Debian/Mint Linux, <code>yum</code> for RedHat Fedora/CentOS).</p></li>
+<li><strong>Install and configure PostgreSQL</strong></li>
+<li><p><strong>Install and configure the Apache web server</strong>.</p></li>
+</ol>
+<p>For more details, see our notes about <a href="workflow-modules.html#osinstall">OS Specific Installations</a>.</p>
 
 </div>
-</div>
-
-
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="contributor-covenant-code-of-conduct.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="pecan-manual-setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="about-the-pecan-book.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="user-section.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -617,7 +639,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tonygardella/pecan/edit/release/vtonydoc/book_source/01_introduction/03_how_to_use_book.Rmd",
+"link": "https://github.com/tonygardella/pecan/edit/release/vtonydoc/book_source/02_demos_tutorials_workflows/01_install_pecan.Rmd",
 "text": "Edit"
 },
 "history": {
