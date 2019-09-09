@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>18 Adding to PEcAn | The Predictive Ecosystem Analyzer</title>
   <meta name="description" content="18 Adding to PEcAn | The Predictive Ecosystem Analyzer" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="18 Adding to PEcAn | The Predictive Ecosystem Analyzer" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="By: PEcAn Team" />
 
 
-<meta name="date" content="2019-08-19" />
+<meta name="date" content="2019-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="shiny.html">
-<link rel="next" href="troubleshooting-and-debugging-pecan.html">
+<link rel="prev" href="shiny.html"/>
+<link rel="next" href="troubleshooting-and-debugging-pecan.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -324,9 +324,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.0.9" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#paleon"><i class="fa fa-check"></i><b>14.0.9</b> PalEON</a></li>
 <li class="chapter" data-level="14.0.10" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#fluxnetlathuile"><i class="fa fa-check"></i><b>14.0.10</b> FluxnetLaThuile</a></li>
 <li class="chapter" data-level="14.0.11" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#geostreams"><i class="fa fa-check"></i><b>14.0.11</b> Geostreams</a></li>
-<li class="chapter" data-level="14.0.12" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#download-gfdl"><i class="fa fa-check"></i><b>14.0.12</b> Download GFDL</a></li>
-<li class="chapter" data-level="14.0.13" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#cm3"><i class="fa fa-check"></i><b>14.0.13</b> CM3</a></li>
-<li class="chapter" data-level="14.0.14" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#esm2m-esm2g"><i class="fa fa-check"></i><b>14.0.14</b> ESM2M &amp; ESM2G</a></li>
+<li class="chapter" data-level="14.0.12" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#era5"><i class="fa fa-check"></i><b>14.0.12</b> ERA5</a></li>
+<li class="chapter" data-level="14.0.13" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#download-gfdl"><i class="fa fa-check"></i><b>14.0.13</b> Download GFDL</a></li>
+<li class="chapter" data-level="14.0.14" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#cm3"><i class="fa fa-check"></i><b>14.0.14</b> CM3</a></li>
+<li class="chapter" data-level="14.0.15" data-path="available-meteorological-drivers.html"><a href="available-meteorological-drivers.html#esm2m-esm2g"><i class="fa fa-check"></i><b>14.0.15</b> ESM2M &amp; ESM2G</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="database-synchronization.html"><a href="database-synchronization.html"><i class="fa fa-check"></i><b>15</b> Database synchronization</a><ul>
 <li class="chapter" data-level="15.0.1" data-path="database-synchronization.html"><a href="database-synchronization.html#how-does-it-work"><i class="fa fa-check"></i><b>15.0.1</b> How does it work?</a></li>
@@ -922,19 +923,19 @@ soil2netcdf(soil.data,&quot;soil.nc&quot;)</code></pre>
 <div id="example-2-converting-paleon-data" class="section level6">
 <h6><span class="header-section-number">18.3.3.0.0.2</span> Example 2: Converting PalEON data</h6>
 <p>In addition to location-specific soil data, PEcAn can extract soil texture information from the PalEON regional soil product, which itself is a subset of the MsTMIP Unified North American Soil Map. If this product is installed on your machine, the appropriate step in the do_conversions workflow is enabled by adding the following tag under <code>&lt;inputs&gt;</code> in your pecan.xml</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb216-1" data-line-number="1">   <span class="kw">&lt;soil&gt;</span></a>
-<a class="sourceLine" id="cb216-2" data-line-number="2">     <span class="kw">&lt;id&gt;</span>1000012896<span class="kw">&lt;/id&gt;</span></a>
-<a class="sourceLine" id="cb216-3" data-line-number="3">   <span class="kw">&lt;/soil&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb215-1" data-line-number="1">   <span class="kw">&lt;soil&gt;</span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2">     <span class="kw">&lt;id&gt;</span>1000012896<span class="kw">&lt;/id&gt;</span></a>
+<a class="sourceLine" id="cb215-3" data-line-number="3">   <span class="kw">&lt;/soil&gt;</span></a></code></pre></div>
 <p>In the future we aim to extend this extraction to a wider range of soil products.</p>
 </div>
 <div id="example-3-extracting-soil-properties-from-gssurgo-database" class="section level6">
 <h6><span class="header-section-number">18.3.3.0.0.3</span> Example 3: Extracting soil properties from gSSURGO database</h6>
 <p>In addition to location-specific soil data, PEcAn can extract soil texture information from the gSSURGO data product. This product needs no installation and it extract soil proeprties for the lower 48 states in U.S. In order to let the pecan know that you’re planning to use gSSURGO, you can the following XML tag under input in your pecan xml file.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="kw">&lt;inputs&gt;</span></a>
-<a class="sourceLine" id="cb217-2" data-line-number="2">   <span class="kw">&lt;soil&gt;</span></a>
-<a class="sourceLine" id="cb217-3" data-line-number="3">     <span class="kw">&lt;source&gt;</span>gSSURGO<span class="kw">&lt;/source&gt;</span></a>
-<a class="sourceLine" id="cb217-4" data-line-number="4">   <span class="kw">&lt;/soil&gt;</span></a>
-<a class="sourceLine" id="cb217-5" data-line-number="5"><span class="kw">&lt;/inputs&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">&lt;inputs&gt;</span></a>
+<a class="sourceLine" id="cb216-2" data-line-number="2">   <span class="kw">&lt;soil&gt;</span></a>
+<a class="sourceLine" id="cb216-3" data-line-number="3">     <span class="kw">&lt;source&gt;</span>gSSURGO<span class="kw">&lt;/source&gt;</span></a>
+<a class="sourceLine" id="cb216-4" data-line-number="4">   <span class="kw">&lt;/soil&gt;</span></a>
+<a class="sourceLine" id="cb216-5" data-line-number="5"><span class="kw">&lt;/inputs&gt;</span></a></code></pre></div>
 </div>
 </div>
 </div>
@@ -1256,8 +1257,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
