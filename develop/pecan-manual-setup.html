@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Install PEcAn | The Predictive Ecosystem Analyzer</title>
   <meta name="description" content="4 Install PEcAn | The Predictive Ecosystem Analyzer" />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Install PEcAn | The Predictive Ecosystem Analyzer" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="By: PEcAn Team" />
 
 
-<meta name="date" content="2019-11-01" />
+<meta name="date" content="2019-12-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,7 @@
 
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.9/datatables.js"></script>
+<script src="libs/datatables-binding-0.11/datatables.js"></script>
 <link href="libs/dt-core-1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.19/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.19/js/jquery.dataTables.min.js"></script>
@@ -543,7 +543,7 @@ Virtual machines allow for running consistent set-ups without worrying about dif
 <p>For Virtualbox version 5.x: In the Appliance Import Settings, make sure you select “Reinitialize the MAC address of all network cards” (picture below). This is not selected by default and can result in networking issues since multiple machines might claim to have the same network MAC Address.</p>
 <p><img src="figures/pic1.jpg" style="display: block; margin: auto;" /></p>
 <p>For Virtualbox versions starting with 6.0, there is a slightly different interface (see figure). Select “Generate new MAC addresses for all network adapters” from the MAC Address Policy:</p>
-<p><img src="figures/pic1v2.png" width="510" style="display: block; margin: auto;" /></p>
+<p><img src="figures/pic1v2.png" style="display: block; margin: auto;" /></p>
 <p>NOTE: If you experience network connection difficulties in the VM with this enabled, try re-importing the VM without this setting selected).</p>
 <p>Finally, click “Import” to build the Virtual Machine from its image.</p>
 <ol start="4" style="list-style-type: decimal">
@@ -659,12 +659,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -676,6 +675,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
